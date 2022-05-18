@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-// import { Users } from './users';
+import { ResponseObject } from './responseObj';
+import { Users } from './users';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,12 @@ export class UsersApiService {
   getUsers(): Observable<ResponseObject> {
     return this.http
       .get<ResponseObject>(this.apiURL + '/api/Users')
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  createUsers(userData : any) {
+    return this.http
+      .post<any>(this.apiURL + '/api/Users/signup', userData)
       .pipe(retry(1), catchError(this.handleError));
   }
 
@@ -32,19 +39,4 @@ export class UsersApiService {
       return errorMessage;
     });
   }
-}
-
-export interface Users {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  role: string;
-}
-
-export interface ResponseObject {
-  message: string;
-  status: boolean;
-  data: Users[];
 }

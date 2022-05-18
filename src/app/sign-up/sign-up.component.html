@@ -2,68 +2,134 @@
   <div class="card-header">
     <h3>Sign Up</h3>
   </div>
-  <div class="card-body">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input
-        type="text"
-        class="form-control"
-        name="firstName"
-        id="firstName"
-        [(ngModel)]="firstName"
-        value="{{ firstName }}"
-      />
-    </div>
+  <form [formGroup]="signUpForm" (ngSubmit)="clickSubmit()">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="firstName"
+          id="firstName"
+          formControlName="firstName"
+          [ngClass]="{
+            'is-invalid':
+              signUpForm?.get('firstName')?.invalid &&
+              (signUpForm?.get('firstName')?.dirty ||
+                signUpForm?.get('firstName')?.touched),
+            'is-valid':
+              signUpForm?.get('firstName')?.valid &&
+              (signUpForm?.get('firstName')?.dirty ||
+                signUpForm?.get('firstName')?.touched)
+          }"
+        />
+      </div>
 
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input
-        type="text"
-        class="form-control"
-        name="lastName"
-        id="lastName"
-        [(ngModel)]="lastName"
-        value="{{ lastName }}"
-      />
-    </div>
+      <span
+        class="text-danger"
+        *ngIf="
+                  signUpForm?.get('firstName')?.invalid &&
+                  (signUpForm?.get('firstName')?.dirty ||
+                    signUpForm?.get('firstName')?.touched) && signUpForm?.get('firstName')?.errors?.['required']"
+        >First name cannot be blank</span
+      >
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="text"
-        class="form-control"
-        name="email"
-        id="email"
-        [(ngModel)]="email"
-        value="{{ email }}"
-      />
-    </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="lastName"
+          id="lastName"
+          formControlName="lastName"
+          [ngClass]="{
+            'is-invalid':
+              signUpForm?.get('lastName')?.invalid &&
+              (signUpForm?.get('lastName')?.dirty ||
+                signUpForm?.get('lastName')?.touched),
+            'is-valid':
+              signUpForm?.get('lastName')?.valid &&
+              (signUpForm?.get('lastName')?.dirty ||
+                signUpForm?.get('lastName')?.touched)
+          }"
+        />
+        <span
+        class="text-danger"
+        *ngIf="
+                  signUpForm?.get('lastName')?.invalid &&
+                  (signUpForm?.get('lastName')?.dirty ||
+                    signUpForm?.get('lastName')?.touched) && signUpForm?.get('lastName')?.errors?.['required']"
+        >Last name cannot be blank</span
+      >
+      </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="text"
-        class="form-control"
-        name="password"
-        id="password"
-        [(ngModel)]="password"
-        value="{{ password }}"
-      />
-    </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          name="email"
+          id="email"
+          formControlName="email"
+          [ngClass]="{
+            'is-invalid':
+              signUpForm?.get('email')?.invalid &&
+              (signUpForm?.get('email')?.dirty ||
+                signUpForm?.get('email')?.touched),
+            'is-valid':
+              signUpForm?.get('email')?.valid &&
+              (signUpForm?.get('email')?.dirty ||
+                signUpForm?.get('email')?.touched)
+          }"
+        />
+        <span
+        class="text-danger"
+        *ngIf="
+                  signUpForm?.get('email')?.invalid &&
+                  (signUpForm?.get('email')?.dirty ||
+                    signUpForm?.get('email')?.touched) && signUpForm?.get('email')?.errors?.['required']"
+        >Email cannot be blank</span
+      >
+      <span
+      class="text-danger"
+      *ngIf="
+                signUpForm?.get('email')?.invalid &&
+                (signUpForm?.get('email')?.dirty ||
+                  signUpForm?.get('email')?.touched) && signUpForm?.get('email')?.errors?.['email']"
+      >Email is invalid</span
+    >
+      </div>
 
-    <div class="form-group">
-      <label for="confirmPassword">Confirm Password</label>
-      <input
-        type="text"
-        class="form-control"
-        name="confirmPassword"
-        id="confirmPassword"
-        [(ngModel)]="confirmPassword"
-        value="{{ confirmPassword }}"
-      />
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="text"
+          class="form-control"
+          name="password"
+          id="password"
+          formControlName="password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="text"
+          class="form-control"
+          name="confirmPassword"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+        />
+      </div>
     </div>
-  </div>
-  <div class="card-footer text-right">
-      <a (click)="clickSubmit()" class="btn btn-success">Create Account</a>
-  </div>
+    <div class="card-footer text-right">
+      <button
+        type="submit"
+        [disabled]="!signUpForm.valid"
+        class="btn btn-success"
+      >
+        Create Account
+      </button>
+    </div>
+  </form>
 </div>
