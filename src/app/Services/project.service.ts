@@ -14,7 +14,20 @@ export class ProjectService {
     return this.http.post<any>(this.apiURL + '/api/Project', projectData);
   }
 
+  editProject(projectData: any) {
+    return this.http.put<any>(this.apiURL + '/api/Project', projectData);
+  }
+
   getProjectList(): Observable<ResponseObject> {
     return this.http.get<ResponseObject>(this.apiURL + '/api/Project');
+  }
+
+  //get project id
+  getProjectId(id: any): Observable<ResponseObject> {
+    return this.http.get<ResponseObject>(this.apiURL + '/api/Project/' + id);
+  }
+
+  deleteProject(id: any) {
+    return this.http.delete(this.apiURL + '/api/Project/' + id);
   }
 }

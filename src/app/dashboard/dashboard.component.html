@@ -2,7 +2,11 @@
 
 <h3>Hi userfirstName!</h3>
 
-<button routerLink="/create-project" routerLinkActive="active">
+<button
+  class="btn btn-secondary"
+  routerLink="/create-project"
+  routerLinkActive="active"
+>
   Add new project
 </button>
 
@@ -11,10 +15,15 @@
     <div class="col-sm-3">
       <h5>Current Projects</h5>
       <ul *ngFor="let project of projectList">
-        <li>{{ project.projectName }}
-          <br>
-          <button class="btn btn-secondary">Edit</button>
-          <button class="btn btn-secondary">Delete</button>
+        <li>
+          {{ project.projectName }}
+          <br />
+          <button (click)="clickEdit(project.id)" class="btn btn-secondary">
+            Edit
+          </button>
+          <button (click)="clickDelete(project.id)" class="btn btn-secondary">
+            Delete
+          </button>
         </li>
       </ul>
     </div>
