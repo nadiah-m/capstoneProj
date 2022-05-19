@@ -12,13 +12,21 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CreateProjectComponent } from './create-project/create-project.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     WelcomeComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    NavbarComponent,
+    CreateProjectComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,

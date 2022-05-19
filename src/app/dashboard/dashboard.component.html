@@ -1,0 +1,45 @@
+<p>Dashboard goes here</p>
+
+<h3>Hi userfirstName!</h3>
+
+<button routerLink="/create-project" routerLinkActive="active">
+  Add new project
+</button>
+
+<div class="card">
+  <div class="row">
+    <div class="col-sm-3">
+      <h5>Current Projects</h5>
+      <ul *ngFor="let project of projectList">
+        <li>{{ project.projectName }}
+          <br>
+          <button class="btn btn-secondary">Edit</button>
+          <button class="btn btn-secondary">Delete</button>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <h5 class="card-header text-center align-center justify-content-center">
+        Project Briefing
+      </h5>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th scope="row">Project Cost</th>
+            <td>$2113507</td>
+          </tr>
+
+          <tr>
+            <th scope="row">Current Expenditure</th>
+            <td>$96788</td>
+          </tr>
+
+          <tr>
+            <th scope="row">Available Funds</th>
+            <td>$52536</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

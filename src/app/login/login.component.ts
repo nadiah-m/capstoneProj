@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +10,12 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 clickSubmit(){
-  console.log("check if user exists", this.email, this.password)
+  console.log("check if user exists", this.email, this.password);
+  this.router.navigate(['/dashboard']);
 }
 }
