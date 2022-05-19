@@ -50,7 +50,7 @@ export class AssignUsersComponent implements OnInit {
     this.assignUsers.designation =
       this.updateUserAssign.value.designation != null
         ? this.updateUserAssign.value.designation
-        : this.userIdDetails.role;
+        : this.userIdDetails.designation;
 
     console.log(this.assignUsers);
 

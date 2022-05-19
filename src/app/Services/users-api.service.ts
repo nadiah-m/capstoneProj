@@ -31,6 +31,11 @@ export class UsersApiService {
   updateUserRole(userData: any) {
     return this.http.put(this.apiURL + '/api/Users/manageUsers', userData);
   }
+
+  deleteUserId(id: any) {
+    return this.http.delete<any>(this.apiURL + '/api/Users/' + id);
+  }
+
   // Error handling
   handleError(error: any) {
     let errorMessage = '';

@@ -4,11 +4,16 @@
       <h5>Users</h5>
       <ul *ngFor="let user of userList">
         <li>
-          {{ user.firstName }} {{ user.lastName }} - {{ user.role }} - {{user.designation}}
+          {{ user.firstName }} {{ user.lastName }} - {{ user.role }} -
+          {{ user.designation }}
 
           <br />
-          <button (click)="clickUpdate(user.id)"class="btn btn-secondary">Update</button>
-
+          <button (click)="clickUpdate(user.id)" class="btn btn-secondary">
+            Update
+          </button>
+          <button (click)="clickDelete(user.id)" class="btn btn-secondary">
+            Delete
+          </button>
         </li>
       </ul>
     </div>

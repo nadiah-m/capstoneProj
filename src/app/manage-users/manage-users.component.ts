@@ -19,13 +19,17 @@ export class ManageUsersComponent implements OnInit {
     });
   }
 
-  clickUpdate(userId:any){
-    this.router.navigate(['/assign-users'],{
-      state: userId
-    })
+  clickUpdate(userId: any) {
+    this.router.navigate(['/assign-users'], {
+      state: userId,
+    });
   }
 
-  
+  clickDelete(userId: any) {
+    this.userService
+      .deleteUserId(userId)
+      .subscribe((data: {}) => this.getUserList());
+  }
 
   ngOnInit(): void {
     this.getUserList();

@@ -27,6 +27,10 @@ export class ProjectService {
     return this.http.get<ResponseObject>(this.apiURL + '/api/Project/' + id);
   }
 
+  getProjectTeam(id: any): Observable<ResponseObject> {
+    return this.http.get<ResponseObject>(this.apiURL + '/api/Project/team');
+  }
+
   deleteProject(id: any) {
     return this.http.delete(this.apiURL + '/api/Project/' + id);
   }

@@ -29,7 +29,11 @@
           {{ project.currentExp }} - Available Funds: {{ project.availFunds }} -
           Status: {{ project.status }}
 
+
           <br />
+          <button (click)="clickEdit(project.id)" class="btn btn-secondary">
+            Edit
+          </button>
           <button (click)="clickEdit(project.id)" class="btn btn-secondary">
             Edit
           </button>

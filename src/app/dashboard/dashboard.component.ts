@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
   projectList: any = [];
   clientList: any = [];
   userList: any = [];
+  projectTeam: any = [];
 
   getProjectList() {
     this.projectService
@@ -38,6 +39,13 @@ export class DashboardComponent implements OnInit {
     this.userService.getUsers().subscribe((res) => {
       this.userList = res.data;
       console.log(this.userList);
+    });
+  }
+
+  getProjectTeam(projectId: any) {
+    this.projectService.getProjectTeam(projectId).subscribe((res) => {
+      console.log(res.data);
+      this.projectTeam = res.data;
     });
   }
 
