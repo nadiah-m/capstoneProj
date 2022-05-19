@@ -16,6 +16,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { CreateClientComponent } from './create-client/create-client.component';
+import { EditClientComponent } from './edit-client/edit-client.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { AssignUsersComponent } from './assign-users/assign-users.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
     DashboardComponent,
     NavbarComponent,
     CreateProjectComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    CreateClientComponent,
+    EditClientComponent,
+    ManageUsersComponent,
+    AssignUsersComponent
   ],
   imports: [
     BrowserModule,

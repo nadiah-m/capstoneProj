@@ -9,14 +9,26 @@
 >
   Add new project
 </button>
+<button
+  class="btn btn-secondary"
+  routerLink="/create-client"
+  routerLinkActive="active"
+>
+  Add new clients
+</button>
 
 <div class="card">
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col">
       <h5>Current Projects</h5>
       <ul *ngFor="let project of projectList">
         <li>
-          {{ project.projectName }}
+          Project Name: {{ project.projectName }} - Start Date:
+          {{ project.startDate }} - Description: {{ project.projectDesc }} -
+          Total cost: {{ project.projectCost }} - Current Expenditure:
+          {{ project.currentExp }} - Available Funds: {{ project.availFunds }} -
+          Status: {{ project.status }}
+
           <br />
           <button (click)="clickEdit(project.id)" class="btn btn-secondary">
             Edit
@@ -26,8 +38,23 @@
           </button>
         </li>
       </ul>
+
+      <h5>Current Clients</h5>
+      <ul *ngFor="let client of clientList">
+        <li>
+          {{ client.clientName }}
+          <br />
+          <button (click)="clickEdit(client.id)" class="btn btn-secondary">
+            Edit
+          </button>
+          <button (click)="clickDelete(client.id)" class="btn btn-secondary">
+            Delete
+          </button>
+        </li>
+      </ul>
     </div>
-    <div class="col-sm-6">
+
+    <!-- <div class="col-sm-6">
       <h5 class="card-header text-center align-center justify-content-center">
         Project Briefing
       </h5>
@@ -49,6 +76,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
   </div>
 </div>

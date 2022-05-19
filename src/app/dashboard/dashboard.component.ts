@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ClientsService } from '../Services/clients.service';
 import { ProjectService } from '../Services/project.service';
+import { UsersApiService } from '../Services/users-api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +10,16 @@ import { ProjectService } from '../Services/project.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(public projectService: ProjectService, private router: Router) {}
+  constructor(
+    public projectService: ProjectService,
+    private router: Router,
+    public clientService: ClientsService,
+    public userService: UsersApiService
+  ) {}
 
   projectList: any = [];
+  clientList: any = [];
+  userList: any = [];
 
   getProjectList() {
     this.projectService
@@ -18,8 +27,24 @@ export class DashboardComponent implements OnInit {
       .subscribe((res) => (this.projectList = res.data));
   }
 
+  getClientList() {
+    this.clientService.getClients().subscribe((res) => {
+      this.clientList = res.data;
+      console.log(this.clientList);
+    });
+  }
+
+  getUserList() {
+    this.userService.getUsers().subscribe((res) => {
+      this.userList = res.data;
+      console.log(this.userList);
+    });
+  }
+
   ngOnInit(): void {
     this.getProjectList();
+    this.getClientList();
+    this.getUserList();
   }
 
   clickEdit(projectId: any) {

@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="row">
+    <div class="col">
+      <h5>Users</h5>
+      <ul *ngFor="let user of userList">
+        <li>
+          {{ user.firstName }} {{ user.lastName }} - {{ user.role }} - {{user.designation}}
+
+          <br />
+          <button (click)="clickUpdate(user.id)"class="btn btn-secondary">Update</button>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

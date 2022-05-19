@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Assign Users</h3>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="updateUserAssign" (ngSubmit)="clickSubmit()">
+      {{ userIdDetails?.firstName }} {{ userIdDetails?.lastName }} -
+      {{ userIdDetails?.email }}
+
+      <div class="form-group">
+        <label for="role">Role: </label>
+        <select
+          name="role"
+          class="form-control"
+          id="role"
+          formControlName="role"
+        >
+          <option value="null">Please Select</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="designation">Designation</label>
+        <input
+          type="text"
+          class="form-control"
+          name="designation"
+          id="designation"
+          formControlName="designation"
+          value="{{ userIdDetails?.designation }}"
+        />
+      </div>
+
+      <div class="card-footer">
+        <a (click)="clickSubmit()" class="btn btn-success">Update</a>
+      </div>
+    </form>
+  </div>
+</div>

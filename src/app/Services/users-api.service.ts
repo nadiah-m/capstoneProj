@@ -18,12 +18,19 @@ export class UsersApiService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  createUsers(userData : any) {
+  getUserId(id: any): Observable<ResponseObject> {
+    return this.http.get<ResponseObject>(this.apiURL + '/api/Users/' + id);
+  }
+
+  createUsers(userData: any) {
     return this.http
       .post<any>(this.apiURL + '/api/Users/signup', userData)
       .pipe(retry(1), catchError(this.handleError));
   }
 
+  updateUserRole(userData: any) {
+    return this.http.put(this.apiURL + '/api/Users/manageUsers', userData);
+  }
   // Error handling
   handleError(error: any) {
     let errorMessage = '';
