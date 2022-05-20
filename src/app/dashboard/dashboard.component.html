@@ -20,29 +20,68 @@
 <div class="card">
   <div class="row">
     <div class="col">
-      <h5>Current Projects</h5>
-      <ul *ngFor="let project of projectList">
-        <li>
-          Project Name: {{ project.projectName }} - Start Date:
-          {{ project.startDate }} - Description: {{ project.projectDesc }} -
-          Total cost: {{ project.projectCost }} - Current Expenditure:
-          {{ project.currentExp }} - Available Funds: {{ project.availFunds }} -
-          Status: {{ project.status }}
+      <h5>Projects</h5>
 
+      Choose Project:
+      <select
+        [(ngModel)]="projectList.id"
+        (ngModelChange)="getProjectDetails(projectList.id)"
+      >
+        <!-- <option value="null">Please select</option> -->
+        <option *ngFor="let project of projectList" value="{{ project.id }}">
+          {{ project.projectName }}
+        </option>
+      </select>
 
-          <br />
-          <button (click)="clickEdit(project.id)" class="btn btn-secondary">
-            Edit
-          </button>
-          <button (click)="clickEdit(project.id)" class="btn btn-secondary">
-            Edit
-          </button>
-          <button (click)="clickDelete(project.id)" class="btn btn-secondary">
-            Delete
-          </button>
-        </li>
-      </ul>
-
+      <table>
+        <h5>Project Details</h5>
+        <tr>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>Project Cost</th>
+          <th>Current Expenditure</th>
+          <th>Available Funds</th>
+          <th>Status</th>
+        </tr>
+        <tr *ngFor="let project of projectDetails">
+          <td>{{ project.projectName }}</td>
+          <td>{{ project.startDate }}</td>
+          <td>{{ project.projectCost }}</td>
+          <td>{{ project.currentExp }}</td>
+          <td>{{ project.availFunds }}</td>
+          <td>{{ project.status }}</td>
+          <td>
+            <button (click)="clickEdit(project.id)" class="btn btn-secondary">
+              Edit
+            </button>
+            <button (click)="clickDelete(project.id)" class="btn btn-secondary">
+              Delete
+            </button>
+          </td>
+        </tr>
+        <h5>Team Members</h5>
+        <tr>
+          <th>
+            Name
+          </th>
+         
+          <th>
+            Designation
+          </th>
+        </tr>
+        <tr *ngFor="let user of projectTeam">
+          <td>
+            {{ user.firstName | titlecase}} {{ user.lastName | titlecase}}
+          </td>
+         
+          <td>
+            {{ user.designation }}
+          </td>
+        </tr>
+      </table>
+      <br />
+    </div>
+    <div>
       <h5>Current Clients</h5>
       <ul *ngFor="let client of clientList">
         <li>
@@ -57,8 +96,9 @@
         </li>
       </ul>
     </div>
+  </div>
 
-    <!-- <div class="col-sm-6">
+  <!-- <div class="col-sm-6">
       <h5 class="card-header text-center align-center justify-content-center">
         Project Briefing
       </h5>
@@ -81,5 +121,4 @@
         </tbody>
       </table>
     </div> -->
-  </div>
 </div>
