@@ -20,6 +20,7 @@ import { CreateClientComponent } from './create-client/create-client.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AssignUsersComponent } from './assign-users/assign-users.component';
+import { AssignProjectComponent } from './assign-project/assign-project.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AssignUsersComponent } from './assign-users/assign-users.component';
     CreateClientComponent,
     EditClientComponent,
     ManageUsersComponent,
-    AssignUsersComponent
+    AssignUsersComponent,
+    AssignProjectComponent
   ],
   imports: [
     BrowserModule,

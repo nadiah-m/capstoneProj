@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AssignProjectComponent } from './assign-project/assign-project.component';
 import { AssignUsersComponent } from './assign-users/assign-users.component';
 import { CreateClientComponent } from './create-client/create-client.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'edit-client', component: EditClientComponent },
   { path: 'manage-users', component: ManageUsersComponent },
   { path: 'assign-users', component: AssignUsersComponent },
+  { path: 'assign-project', component: AssignProjectComponent}
 ];
 
 @NgModule({

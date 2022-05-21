@@ -60,6 +60,10 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  addTeam(projectId:any) {
+    console.log("addTeam",projectId)
+  }
+
   ngOnInit(): void {
     this.getClientList();
     this.getUserList();
