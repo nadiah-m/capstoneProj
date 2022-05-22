@@ -33,6 +33,24 @@ export class ProjectService {
     );
   }
 
+  //link user to project
+  addTeamMember(userId: any, projectId: any) {
+    return this.http.post(
+      this.apiURL +
+        '/api/Project/UserProjects?userId=' +
+        userId +
+        '&projectId=' +
+        projectId,
+      userId,
+      projectId
+    );
+  }
+
+  //delete user to project
+  // deleteTeamFromApi(userId: any, projectId: any) {
+  //   return this.http.delete(this.apiURL + '/api/Project/UserProjects?userId=' + userId + '&projectId=' + projectId,userId,projectId);
+  // }
+
   deleteProject(id: any) {
     return this.http.delete(this.apiURL + '/api/Project/' + id);
   }

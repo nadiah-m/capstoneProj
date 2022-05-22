@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClientsService } from '../Services/clients.service';
 import { ProjectService } from '../Services/project.service';
@@ -14,7 +15,8 @@ export class DashboardComponent implements OnInit {
     public projectService: ProjectService,
     private router: Router,
     public clientService: ClientsService,
-    public userService: UsersApiService
+    public userService: UsersApiService,
+    private formBuilder: FormBuilder
   ) {
     this.getProjectList();
   }
@@ -25,6 +27,10 @@ export class DashboardComponent implements OnInit {
   projectTeam: any = [];
   projectDetails: any = [];
   clientProject: any = [];
+
+  addTeamMemberForm = this.formBuilder.group({
+    teamMember: [null],
+  });
 
   getProjectDetails(projectId: any) {
     let obj = this.projectList.filter((proj: any) => proj.id == projectId);
@@ -53,6 +59,7 @@ export class DashboardComponent implements OnInit {
   getUserList() {
     this.userService.getUsers().subscribe((res) => {
       this.userList = res.data;
+      console.log('userlist dashboard', this.userList);
     });
   }
 
@@ -73,12 +80,19 @@ export class DashboardComponent implements OnInit {
   }
 
   addTeam(projectId: any) {
-    // console.log('addTeam', projectId);
+    let userIdToAdd = Number(this.addTeamMemberForm.value.teamMember);
+    // console.log('userIdToAdd', userIdToAdd);
+    // console.log('this project', projectId);
+    this.projectService
+      .addTeamMember(userIdToAdd, projectId)
+      .subscribe((data: {}) => {
+        this.getProjectTeam(projectId);
+      });
   }
 
-  ngOnInit(): void {
-    this.getClientList();
-    this.getUserList();
+  deleteTeamMember(userId: any, projectId: any) {
+    console.log('delete userId', userId);
+    console.log('delete projectId', projectId);
   }
 
   clickEdit(projectId: any) {
@@ -97,5 +111,10 @@ export class DashboardComponent implements OnInit {
     this.projectService
       .deleteProject(projectId)
       .subscribe((data: {}) => this.getProjectList());
+  }
+
+  ngOnInit(): void {
+    this.getClientList();
+    this.getUserList();
   }
 }

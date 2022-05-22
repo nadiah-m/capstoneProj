@@ -93,32 +93,97 @@
         </div>
         <h5>Team Members</h5>
         <div class="card">
-          <button class="btn btn-outline-secondary">Add team members</button>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
+          <button
+            class="btn btn-outline-secondary"
+            data-bs-toggle="modal"
+            data-bs-target="#displayUsers"
+          >
+            Add team members
+          </button>
+          <!-- Modal -->
+          <div class="modal" id="displayUsers">
+            <form
+              [formGroup]="addTeamMemberForm"
+              (ngSubmit)="addTeam(projectDetails[0].id)"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Add team members</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <select formControlName="teamMember">
+                      <option value="null">Please select</option>
+                      <option
+                        *ngFor="let user of userList"
+                        value="{{ user.id }}"
+                      >
+                        {{ user.firstName | titlecase }}
+                        {{ user.lastName | titlecase }} : {{ user.designation }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      data-bs-dismiss="modal"
+                    >
+                      Add
+                    </button>
 
-                <th scope="col">Designation</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of projectTeam">
-                <td>
-                  {{ user.firstName | titlecase }}
-                  {{ user.lastName | titlecase }}
-                </td>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
 
-                <td>
-                  {{ user.designation }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br />
+                  <th scope="col">Designation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of projectTeam">
+                  <td>
+                    {{ user.firstName | titlecase }}
+                    {{ user.lastName | titlecase }}
+                  </td>
+
+                  <td>
+                    {{ user.designation }}
+                  </td>
+                  <td>
+                    <button
+                      (click)="deleteTeamMember(user.id, projectDetails[0].id)"
+                      class="btn btn-secondary"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+          </div>
         </div>
-      </div>
-      <!-- <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
       <h5 class="card-header text-center align-center justify-content-center">
         Project Briefing
       </h5>
@@ -141,6 +206,7 @@
         </tbody>
       </table>
     </div> -->
+      </div>
     </div>
   </div>
 </div>
