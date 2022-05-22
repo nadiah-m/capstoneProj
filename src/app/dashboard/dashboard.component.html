@@ -5,19 +5,17 @@
       <div class="d-flex justify-content-left">
         <h5>Projects</h5>
       </div>
-      <div class="list-group border-0 d-flex">
-        <button type="button" class="list-group-item border-0 text-start">
-          Project A
-        </button>
-        <button type="button" class="list-group-item border-0 text-start">
-          Project B
-        </button>
-        <button type="button" class="list-group-item border-0 text-start">
-          Project C
-        </button>
-        <button type="button" class="list-group-item border-0 text-start">
-          Project D
-        </button>
+      <div class="">
+        <ul class="list-group border-0 d-flex">
+          <button
+            *ngFor="let project of projectList"
+            type="button"
+            (click)="getProjectDetails(project.id)"
+            class="list-group-item border-0 text-start"
+          >
+            {{ project.projectName }}
+          </button>
+        </ul>
       </div>
       <div class="d-flex justify-content-left">
         <button
@@ -51,26 +49,15 @@
     </div>
 
     <div class="col-8 align-self-stretch">
-      <h5>Projects</h5>
-
-      Choose Project:
-      <select
-        [(ngModel)]="projectList.id"
-        (ngModelChange)="getProjectDetails(projectList.id)"
-      >
-        <!-- <option value="null">Please select</option> -->
-        <option *ngFor="let project of projectList" value="{{ project.id }}">
-          {{ project.projectName }}
-        </option>
-      </select>
+      <h5>Project Details</h5>
       <div>
         <div class="card">
-          <h5>Project Details</h5>
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Start Date</th>
+                <th scope="col">Client</th>
                 <th scope="col">Project Cost</th>
                 <th scope="col">Current Expenditure</th>
                 <th scope="col">Available Funds</th>
@@ -80,28 +67,33 @@
             <tbody>
               <tr *ngFor="let project of projectDetails">
                 <td>{{ project.projectName }}</td>
-                <td>{{ project.startDate }}</td>
-                <td>{{ project.projectCost }}</td>
-                <td>{{ project.currentExp }}</td>
-                <td>{{ project.availFunds }}</td>
+                <td>{{ project.startDate | date }}</td>
+                <td>{{ clientProject.clientName }}</td>
+                <td>{{ project.projectCost | currency }}</td>
+                <td>{{ project.currentExp | currency }}</td>
+                <td>{{ project.availFunds | currency }}</td>
                 <td>{{ project.status }}</td>
                 <td>
-                  <button (click)="clickEdit(project.id)" class="btn">
+                  <button
+                    (click)="clickEdit(project.id)"
+                    class="btn btn-outline-secondary"
+                  >
                     Edit
                   </button>
-                  <button (click)="clickDelete(project.id)" class="btn">
+                  <button
+                    (click)="clickDelete(project.id)"
+                    class="btn btn-outline-secondary"
+                  >
                     Delete
-                  </button>
-                  <button (click)="addTeam(project.id)" class="btn">
-                    Add team members
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+        <h5>Team Members</h5>
         <div class="card">
-          <h5>Team Members</h5>
+          <button class="btn btn-outline-secondary">Add team members</button>
           <table class="table">
             <thead>
               <tr>

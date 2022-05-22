@@ -24,19 +24,21 @@ export class DashboardComponent implements OnInit {
   userList: any = [];
   projectTeam: any = [];
   projectDetails: any = [];
+  clientProject: any = [];
 
   getProjectDetails(projectId: any) {
-    console.log(projectId);
     let obj = this.projectList.filter((proj: any) => proj.id == projectId);
     this.projectDetails = obj;
     this.getProjectTeam(projectId);
     console.log('getprojectdetails', this.projectDetails);
+    let getClientId = this.projectDetails[0].clientId;
+    this.getProjectClient(getClientId);
   }
 
   getProjectList() {
     this.projectService.getProjectList().subscribe((res) => {
       this.projectList = res.data;
-      console.log('projectList', this.projectList);
+      // console.log('projectList', this.projectList);
       return this.projectList;
     });
   }
@@ -44,6 +46,7 @@ export class DashboardComponent implements OnInit {
   getClientList() {
     this.clientService.getClients().subscribe((res) => {
       this.clientList = res.data;
+      // console.log('this clientList', this.clientList);
     });
   }
 
@@ -53,15 +56,24 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  getProjectClient(clientId: any) {
+    let clientObj = this.clientList.filter(
+      (client: any) => client.id == clientId
+    );
+    // console.log('getProjectClient method', clientObj);
+    this.clientProject = clientObj[0];
+    return this.clientProject;
+  }
+
   getProjectTeam(projectId: any) {
     this.projectService.getProjectTeam(projectId).subscribe((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       this.projectTeam = res.data;
     });
   }
 
-  addTeam(projectId:any) {
-    console.log("addTeam",projectId)
+  addTeam(projectId: any) {
+    // console.log('addTeam', projectId);
   }
 
   ngOnInit(): void {
