@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClientsService } from '../Services/clients.service';
 import { ProjectService } from '../Services/project.service';
+import { TeamService } from '../Services/team.service';
 import { UsersApiService } from '../Services/users-api.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit {
     public projectService: ProjectService,
     private router: Router,
     public clientService: ClientsService,
+    public teamService: TeamService,
     public userService: UsersApiService,
     private formBuilder: FormBuilder
   ) {
@@ -73,7 +75,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getProjectTeam(projectId: any) {
-    this.projectService.getProjectTeam(projectId).subscribe((res) => {
+    this.teamService.getProjectTeam(projectId).subscribe((res) => {
       // console.log(res.data);
       this.projectTeam = res.data;
     });
@@ -83,7 +85,7 @@ export class DashboardComponent implements OnInit {
     let userIdToAdd = Number(this.addTeamMemberForm.value.teamMember);
     // console.log('userIdToAdd', userIdToAdd);
     // console.log('this project', projectId);
-    this.projectService
+    this.teamService
       .addTeamMember(userIdToAdd, projectId)
       .subscribe((data: {}) => {
         this.getProjectTeam(projectId);
@@ -93,6 +95,9 @@ export class DashboardComponent implements OnInit {
   deleteTeamMember(userId: any, projectId: any) {
     console.log('delete userId', userId);
     console.log('delete projectId', projectId);
+    this.teamService
+      .deleteTeamFromApi(userId, projectId)
+      .subscribe((data: {}) => this.getProjectTeam(projectId));
   }
 
   clickEdit(projectId: any) {
