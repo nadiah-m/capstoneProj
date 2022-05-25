@@ -2,6 +2,7 @@
   <h4>Hi userfirstName!</h4>
   <div class="row">
     <div class="col-3 align-self-stretch">
+      <!-- List of projects -->
       <div class="d-flex justify-content-left">
         <h5>Projects</h5>
       </div>
@@ -25,18 +26,21 @@
         >
           Add new project
         </button>
+
+        <!-- List of clients -->
       </div>
       <h5>Current Clients</h5>
-      <ul *ngFor="let client of clientList">
-        <li>
+      <ul *ngFor="let client of clientList" class="list-group border-0 d-flex">
+        <li class="list-group-item border-0 text-start">
           {{ client.clientName }}
+
           <br />
-          <button (click)="clickEdit(client.id)" class="btn btn-secondary">
+          <!-- <button (click)="clickEdit(client.id)" class="btn btn-secondary">
             Edit
           </button>
           <button (click)="clickDelete(client.id)" class="btn btn-secondary">
             Delete
-          </button>
+          </button> -->
         </li>
       </ul>
       <button
@@ -48,6 +52,7 @@
       </button>
     </div>
 
+    <!-- Project body details -->
     <div class="col-8 align-self-stretch">
       <h5>Project Details</h5>
       <div>
@@ -65,7 +70,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let project of projectDetails">
+              <tr *ngFor="let project of projectDetails" class="projectDetails">
                 <td>{{ project.projectName }}</td>
                 <td>{{ project.startDate | date }}</td>
                 <td>{{ clientProject.clientName }}</td>
@@ -91,6 +96,8 @@
             </tbody>
           </table>
         </div>
+
+        <!-- Team member details -->
         <h5>Team Members</h5>
         <div class="card">
           <button
@@ -100,7 +107,7 @@
           >
             Add team members
           </button>
-          <!-- Modal -->
+          <!-- Modal to add users-->
           <div class="modal" id="displayUsers">
             <form
               [formGroup]="addTeamMemberForm"
@@ -150,6 +157,7 @@
               </div>
             </form>
           </div>
+          <!-- Team member table details -->
           <div>
             <table class="table">
               <thead>
@@ -183,29 +191,6 @@
             <br />
           </div>
         </div>
-        <!-- <div class="col-sm-6">
-      <h5 class="card-header text-center align-center justify-content-center">
-        Project Briefing
-      </h5>
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <th scope="row">Project Cost</th>
-            <td>$2113507</td>
-          </tr>
-
-          <tr>
-            <th scope="row">Current Expenditure</th>
-            <td>$96788</td>
-          </tr>
-
-          <tr>
-            <th scope="row">Available Funds</th>
-            <td>$52536</td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
       </div>
     </div>
   </div>

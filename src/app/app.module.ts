@@ -12,7 +12,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
@@ -28,7 +28,7 @@ import { AssignProjectComponent } from './assign-project/assign-project.componen
     SignUpComponent,
     WelcomeComponent,
     LoginComponent,
-    DashboardComponent,
+    DashboardAdminComponent,
     NavbarComponent,
     CreateProjectComponent,
     EditProjectComponent,

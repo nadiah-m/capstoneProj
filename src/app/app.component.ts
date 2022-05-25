@@ -1,10 +1,25 @@
 import { Component } from '@angular/core';
+import { UserAuth } from './models/userAuth';
+import { AuthenticationService } from './Services/authentication.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'capstoneAngular';
+  title = 'Project Planner';
+  loggedIn: boolean = false;
+  constructor(private authService: AuthenticationService) {}
+
+  ngOnInit() {
+    this.setCurrentUser();
+  }
+
+  setCurrentUser() {
+    const currentUser: UserAuth = JSON.parse(
+      localStorage.getItem('currentUser') || '{}'
+    );
+    this.authService.setCurrentUser(currentUser);
+  }
 }

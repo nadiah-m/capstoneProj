@@ -26,6 +26,6 @@ export class CreateClientComponent implements OnInit {
     console.log(this.newClientForm.value);
     this.clientService
       .createNewClient(this.newClientForm.value)
-      .subscribe((data: {}) => this.router.navigate(['/dashboard']));
+      .subscribe((data: {}) => this.router.navigate(['/dashboard-admin']));
   }
 }

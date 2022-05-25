@@ -46,7 +46,7 @@ export class CreateProjectComponent implements OnInit {
     this.projectService
       .createProject(this.newProjectForm.value)
       .subscribe((data: {}) => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard-admin']);
       });
   }
 }

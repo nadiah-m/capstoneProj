@@ -109,7 +109,7 @@ export class EditProjectComponent implements OnInit {
     console.log('editForm', this.editForm);
 
     this.projectService.editProject(this.editForm).subscribe((data: {}) => {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/dashboard-admin']);
     });
   }
 }

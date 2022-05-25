@@ -3,16 +3,38 @@
   style="background-color: #414549"
 >
   <div class="container-fluid text-white">
-    <a class="navbar-brand" routerLink="dashboard" routerLinkActive="active"
+    <a class="navbar-brand" routerLink="welcome" routerLinkActive="active"
       >Project Planner</a
     >
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+    <ul class="navbar-nav me-auto" *ngIf="loggedIn">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="dashboard-admin"
+          routerLinkActive="active"
+          >Dashboard</a
+        >
+      </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="manage-users" routerLinkActive="active"
           >Users</a
         >
       </li>
+      <li class="nav-item">
+        <a class="nav-link btn" routerLinkActive="active" (click)="logout()"
+          >Logout</a
+        >
+      </li>
     </ul>
+
+    <div class="dropdown" *ngIf="loggedIn">
+      <a class="dropdown-toggle nav-link text-light" role="button" id="userOptions" data-bs-toggle="dropdown" aria-expanded="false">Welcome user</a>
+      <div class="dropdown-menu" aria-labelledby="userOptions">
+        <a class="dropdown-item">Edit Profile</a>
+        <a class="dropdown-item" (click)="logout()">Logout</a>
+      </div>
+    </div>
 
     <!-- <form class="d-flex">
       <input

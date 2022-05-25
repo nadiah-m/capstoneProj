@@ -7,11 +7,11 @@ import { TeamService } from '../Services/team.service';
 import { UsersApiService } from '../Services/users-api.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: 'app-dashboard-admin',
+  templateUrl: './dashboard-admin.component.html',
+  styleUrls: ['./dashboard-admin.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardAdminComponent implements OnInit {
   constructor(
     public projectService: ProjectService,
     private router: Router,
@@ -113,9 +113,10 @@ export class DashboardComponent implements OnInit {
   }
 
   clickDelete(projectId: any) {
-    this.projectService
-      .deleteProject(projectId)
-      .subscribe((data: {}) => this.getProjectList());
+    this.projectService.deleteProject(projectId).subscribe((data: {}) => {
+      this.getProjectList();
+      
+    });
   }
 
   ngOnInit(): void {
