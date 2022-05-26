@@ -1,107 +1,131 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Create New Project</h3>
-  </div>
-  <form [formGroup]="newProjectForm" (ngSubmit)="clickSubmit()">
-    <div class="card-body">
-      <div class="form-group">
-        <label for="projectName">Project Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="projectName"
-          id="projectName"
-          formControlName="projectName"
-        />
-      </div>
+<section class="" style="background-color: #f2f5fc">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-6">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-4">Create New Project</h3>
 
-      <div class="form-group">
-        <label for="startDate">Start Date</label>
-        <input
-          type="date"
-          class="form-control"
-          name="startDate"
-          id="startDate"
-          formControlName="startDate"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="projectDesc">Project Description</label>
-        <textarea
-          type="text"
-          class="form-control"
-          name="projectDesc"
-          id="projectDesc"
-          formControlName="projectDesc"
-        ></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="projectCost">Project Cost</label>
-        <input
-          type="number"
-          class="form-control"
-          name="projectCost"
-          id="projectCost"
-          formControlName="projectCost"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="currentExp">Current Expenditure</label>
-        <input
-          type="number"
-          class="form-control"
-          name="currentExp"
-          id="currentExp"
-          formControlName="currentExp"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="availFunds">Available Funds</label>
-        <input
-          type="number"
-          class="form-control"
-          name="availFunds"
-          id="availFunds"
-          formControlName="availFunds"
-        />
-      </div>
-      <div class="form-group">
-        <label for="status">Status</label>
-        <select
-          name="status"
-          class="form-control"
-          id="status"
-          formControlName="status"
-        >
-          <option value="null">Please Select</option>
-          <option value="Not started">Not started</option>
-          <option value="Ongoing">Ongoing</option>
-          <option value="Completed">Completed</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="clientId">Client</label>
-        <select
-          name="clientId"
-          class="form-control"
-          id="clientId"
-          formControlName="clientId"
-        >
-          <option value="null">Please Select</option>
-          <option *ngFor="let client of clientId" value="{{ client.id }}">
-            {{ client.clientName }}
-          </option>
-        </select>
-      </div>
-
-      <div class="card-footer">
-        <a (click)="clickSubmit()" class="btn btn-success">Create Project</a>
+            <form [formGroup]="newProjectForm" (ngSubmit)="clickSubmit()">
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="projectName">Project Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="projectName"
+                    id="projectName"
+                    formControlName="projectName"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="startDate">Start Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="startDate"
+                    id="startDate"
+                    formControlName="startDate"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="projectDesc">Project Description</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    name="projectDesc"
+                    id="projectDesc"
+                    formControlName="projectDesc"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="projectCost">Project Cost</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="projectCost"
+                    id="projectCost"
+                    formControlName="projectCost"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="currentExp">Current Expenditure</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="currentExp"
+                    id="currentExp"
+                    formControlName="currentExp"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="availFunds">Available Funds</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="availFunds"
+                    id="availFunds"
+                    formControlName="availFunds"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select
+                    name="status"
+                    class="form-control"
+                    id="status"
+                    formControlName="status"
+                  >
+                    <option value="null">Please Select</option>
+                    <option value="Not started">Not started</option>
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Completed">Completed</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="clientId">Client</label>
+                  <select
+                    name="clientId"
+                    class="form-control"
+                    id="clientId"
+                    formControlName="clientId"
+                  >
+                    <option value="null">Please Select</option>
+                    <option
+                      *ngFor="let client of clientId"
+                      value="{{ client.id }}"
+                    >
+                      {{ client.clientName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col d-grid mt-4">
+                <span class="text-danger">{{ errorMessage }}</span>
+              </div>
+              <div class="d-grid mt-4">
+                <button (click)="clickSubmit()" class="btn btn-primary">
+                  Create Project
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </form>
-</div>
+  </div>
+</section>

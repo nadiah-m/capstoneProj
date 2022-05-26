@@ -11,6 +11,8 @@ import { ProjectService } from '../Services/project.service';
   styleUrls: ['./create-project.component.css'],
 })
 export class CreateProjectComponent implements OnInit {
+  errorMessage: string = '';
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -34,7 +36,6 @@ export class CreateProjectComponent implements OnInit {
 
   clientId: any = [];
 
-
   getClientNames() {
     this.clientService
       .getClients()
@@ -43,10 +44,12 @@ export class CreateProjectComponent implements OnInit {
 
   clickSubmit() {
     console.log(this.newProjectForm.value);
-    this.projectService
-      .createProject(this.newProjectForm.value)
-      .subscribe((data: {}) => {
-        this.router.navigate(['/dashboard-admin']);
-      });
+    this.projectService.createProject(this.newProjectForm.value).subscribe({
+   
+      error: (error) => {
+        (this.errorMessage = error.error), console.log(error.error);
+      },
+      complete: () => this.router.navigate(['/dashboard-admin']),
+    });
   }
 }

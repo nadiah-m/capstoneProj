@@ -1,113 +1,135 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Edit Project Details</h3>
+<section class="" style="background-color: #f2f5fc">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-6">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-4">Edit Project Details</h3>
+
+            <form [formGroup]="editProjectForm" (ngSubmit)="clickSubmit()">
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="projectName">Project Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="projectName"
+                    id="projectName"
+                    formControlName="projectName"
+                    value="{{ projectIdData?.projectName }}"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="startDate">Start Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="startDate"
+                    id="startDate"
+                    formControlName="startDate"
+                    value="{{ orgStartDate }}"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="projectDesc">Project Description</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    name="projectDesc"
+                    id="projectDesc"
+                    formControlName="projectDesc"
+                    value="{{ projectIdData?.projectDesc }}"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="projectCost">Project Cost</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="projectCost"
+                    id="projectCost"
+                    formControlName="projectCost"
+                    value="{{ projectIdData?.projectCost }}"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="currentExp">Current Expenditure</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="currentExp"
+                    id="currentExp"
+                    formControlName="currentExp"
+                    value="{{ projectIdData?.currentExp }}"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="availFunds">Available Funds</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="availFunds"
+                    id="availFunds"
+                    formControlName="availFunds"
+                    value="{{ projectIdData?.availFunds }}"
+                  />
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select
+                    name="status"
+                    class="form-control"
+                    id="status"
+                    formControlName="status"
+                    value="{{ projectIdData?.status }}"
+                  >
+                    <option value="null">Please Select</option>
+                    <option value="Not started">Not started</option>
+                    <option value="Ongoing">Ongoing</option>
+                    <option value="Completed">Completed</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="clientId">Client</label>
+                  <select
+                    name="clientId"
+                    class="form-control"
+                    id="clientId"
+                    formControlName="clientId"
+                  >
+                    <option value="null">Please Select</option>
+                    <option
+                      *ngFor="let client of clientId"
+                      value="{{ client.id }}"
+                    >
+                      {{ client.clientName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-grid mt-5 py-2">
+                <button (click)="clickSubmit()" class="btn btn-primary">
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <form [formGroup]="editProjectForm" (ngSubmit)="clickSubmit()">
-    <div class="card-body">
-      <div class="form-group">
-        <label for="projectName">Project Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="projectName"
-          id="projectName"
-          formControlName="projectName"
-          value="{{ projectIdData?.projectName }}"
-        />
-      </div>
-      <div class="form-group">
-        <label for="startDate">Start Date</label>
-        <input
-          type="date"
-          class="form-control"
-          name="startDate"
-          id="startDate"
-          formControlName="startDate"
-          value="{{ orgStartDate }}"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="projectDesc">Project Description</label>
-        <textarea
-          type="text"
-          class="form-control"
-          name="projectDesc"
-          id="projectDesc"
-          formControlName="projectDesc"
-          value="{{ projectIdData?.projectDesc }}"
-        ></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="projectCost">Project Cost</label>
-        <input
-          type="number"
-          class="form-control"
-          name="projectCost"
-          id="projectCost"
-          formControlName="projectCost"
-          value="{{ projectIdData?.projectCost }}"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="currentExp">Current Expenditure</label>
-        <input
-          type="number"
-          class="form-control"
-          name="currentExp"
-          id="currentExp"
-          formControlName="currentExp"
-          value="{{ projectIdData?.currentExp }}"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="availFunds">Available Funds</label>
-        <input
-          type="number"
-          class="form-control"
-          name="availFunds"
-          id="availFunds"
-          formControlName="availFunds"
-          value="{{ projectIdData?.availFunds }}"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="status">Status</label>
-        <select
-          name="status"
-          class="form-control"
-          id="status"
-          formControlName="status"
-          value="{{ projectIdData?.status }}"
-        >
-          <option value="null">Please Select</option>
-          <option value="Not started">Not started</option>
-          <option value="Ongoing">Ongoing</option>
-          <option value="Completed">Completed</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="clientId">Client</label>
-        <select
-          name="clientId"
-          class="form-control"
-          id="clientId"
-          formControlName="clientId"
-        >
-          <option value="null">Please Select</option>
-          <option *ngFor="let client of clientId" value="{{ client.id }}">
-            {{ client.clientName }}
-          </option>
-        </select>
-      </div>
-    </div>
-    <div class="card-footer">
-      <a (click)="clickSubmit()" class="btn btn-success">Update</a>
-    </div>
-  </form>
-</div>
+</section>
