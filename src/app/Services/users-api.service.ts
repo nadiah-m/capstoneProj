@@ -29,9 +29,7 @@ export class UsersApiService {
   }
 
   createUsers(userData: any) {
-    return this.http
-      .post<any>(this.apiURL + '/api/Users/signup', userData)
-      .pipe(retry(1), catchError(this.handleError));
+    return this.http.post<any>(this.apiURL + '/api/Users/signup', userData);
   }
 
   updateUserRole(userData: any) {

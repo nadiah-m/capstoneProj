@@ -35,14 +35,14 @@
                 <div class="col">
                   <a href="#">Forgot password?</a>
                 </div>
-                <div class="d-grid mt-4 py-2" >
-                <button
-                  (click)="clickSubmit()"
-                  class=" btn btn-primary"
-                >
-                  Login
-                </button>
-              </div>
+                <div class="col d-grid mt-4">
+                  <span class="text-danger">{{ errorMessage }}</span>
+                </div>
+                <div class="d-grid mt-4">
+                  <button (click)="clickSubmit()" class="btn btn-primary">
+                    Login
+                  </button>
+                </div>
               </div>
             </form>
           </div>

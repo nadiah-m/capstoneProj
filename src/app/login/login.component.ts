@@ -10,6 +10,7 @@ import { AuthenticationService } from '../Services/authentication.service';
 })
 export class LoginComponent implements OnInit {
   loggedIn: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private router: Router,
@@ -24,13 +25,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
   clickSubmit() {
-
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         console.log('next response', response);
         this.loggedIn = true;
       },
-      error: (error) => console.log(error.error),
+      error: (error) => {
+        (this.errorMessage = error.error), console.log(error.error);
+      },
       complete: () => this.router.navigate(['/dashboard-admin']),
     });
   }
