@@ -22,6 +22,7 @@ export class AuthenticationService {
     return this.http.post(this.apiURL + '/api/Users/login', userData).pipe(
       map((response: any) => {
         const user = response;
+        console.log("authservice login",user)
         if (user) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);

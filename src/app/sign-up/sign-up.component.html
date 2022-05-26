@@ -1,135 +1,209 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Sign Up</h3>
-  </div>
-  <form [formGroup]="signUpForm" (ngSubmit)="clickSubmit()">
-    <div class="card-body">
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="firstName"
-          id="firstName"
-          formControlName="firstName"
-          [ngClass]="{
-            'is-invalid':
-              signUpForm?.get('firstName')?.invalid &&
-              (signUpForm?.get('firstName')?.dirty ||
-                signUpForm?.get('firstName')?.touched),
-            'is-valid':
-              signUpForm?.get('firstName')?.valid &&
-              (signUpForm?.get('firstName')?.dirty ||
-                signUpForm?.get('firstName')?.touched)
-          }"
-        />
-      </div>
+<section class="vh-100" style="background-color: #f2f5fc">
+  <div class="container py-5 h-75">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-4">Sign Up</h3>
 
-      <span
-        class="text-danger"
-        *ngIf="
+            <form [formGroup]="signUpForm" (ngSubmit)="clickSubmit()">
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="firstName"
+                    id="firstName"
+                    formControlName="firstName"
+                    [ngClass]="{
+                      'is-invalid':
+                        signUpForm?.get('firstName')?.invalid &&
+                        (signUpForm?.get('firstName')?.dirty ||
+                          signUpForm?.get('firstName')?.touched),
+                      'is-valid':
+                        signUpForm?.get('firstName')?.valid &&
+                        (signUpForm?.get('firstName')?.dirty ||
+                          signUpForm?.get('firstName')?.touched)
+                    }"
+                  />
+                </div>
+
+                <span
+                  class="text-danger"
+                  *ngIf="
                   signUpForm?.get('firstName')?.invalid &&
                   (signUpForm?.get('firstName')?.dirty ||
                     signUpForm?.get('firstName')?.touched) && signUpForm?.get('firstName')?.errors?.['required']"
-        >First name cannot be blank</span
-      >
-
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="lastName"
-          id="lastName"
-          formControlName="lastName"
-          [ngClass]="{
-            'is-invalid':
-              signUpForm?.get('lastName')?.invalid &&
-              (signUpForm?.get('lastName')?.dirty ||
-                signUpForm?.get('lastName')?.touched),
-            'is-valid':
-              signUpForm?.get('lastName')?.valid &&
-              (signUpForm?.get('lastName')?.dirty ||
-                signUpForm?.get('lastName')?.touched)
-          }"
-        />
-        <span
-        class="text-danger"
-        *ngIf="
+                  >First name cannot be blank</span
+                >
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="lastName"
+                    id="lastName"
+                    formControlName="lastName"
+                    [ngClass]="{
+                      'is-invalid':
+                        signUpForm?.get('lastName')?.invalid &&
+                        (signUpForm?.get('lastName')?.dirty ||
+                          signUpForm?.get('lastName')?.touched),
+                      'is-valid':
+                        signUpForm?.get('lastName')?.valid &&
+                        (signUpForm?.get('lastName')?.dirty ||
+                          signUpForm?.get('lastName')?.touched)
+                    }"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
                   signUpForm?.get('lastName')?.invalid &&
                   (signUpForm?.get('lastName')?.dirty ||
                     signUpForm?.get('lastName')?.touched) && signUpForm?.get('lastName')?.errors?.['required']"
-        >Last name cannot be blank</span
-      >
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="text"
-          class="form-control"
-          name="email"
-          id="email"
-          formControlName="email"
-          [ngClass]="{
-            'is-invalid':
-              signUpForm?.get('email')?.invalid &&
-              (signUpForm?.get('email')?.dirty ||
-                signUpForm?.get('email')?.touched),
-            'is-valid':
-              signUpForm?.get('email')?.valid &&
-              (signUpForm?.get('email')?.dirty ||
-                signUpForm?.get('email')?.touched)
-          }"
-        />
-        <span
-        class="text-danger"
-        *ngIf="
+                    >Last name cannot be blank</span
+                  >
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                    [ngClass]="{
+                      'is-invalid':
+                        signUpForm?.get('email')?.invalid &&
+                        (signUpForm?.get('email')?.dirty ||
+                          signUpForm?.get('email')?.touched),
+                      'is-valid':
+                        signUpForm?.get('email')?.valid &&
+                        (signUpForm?.get('email')?.dirty ||
+                          signUpForm?.get('email')?.touched)
+                    }"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
                   signUpForm?.get('email')?.invalid &&
                   (signUpForm?.get('email')?.dirty ||
                     signUpForm?.get('email')?.touched) && signUpForm?.get('email')?.errors?.['required']"
-        >Email cannot be blank</span
-      >
-      <span
-      class="text-danger"
-      *ngIf="
+                    >Email cannot be blank</span
+                  >
+                  <span
+                    class="text-danger"
+                    *ngIf="
                 signUpForm?.get('email')?.invalid &&
                 (signUpForm?.get('email')?.dirty ||
                   signUpForm?.get('email')?.touched) && signUpForm?.get('email')?.errors?.['email']"
-      >Email is invalid</span
-    >
-      </div>
+                    >Email is invalid</span
+                  >
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                  signUpForm?.get('email')?.invalid &&
+                  (signUpForm?.get('email')?.dirty ||
+                    signUpForm?.get('email')?.touched) && signUpForm?.get('email')?.errors?.['userExists']"
+                    >A user with this email already exists </span
+                  >
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    id="password"
+                    formControlName="password"
+                    [ngClass]="{
+                      'is-invalid':
+                        signUpForm?.get('password')?.invalid &&
+                        (signUpForm?.get('password')?.dirty ||
+                          signUpForm?.get('password')?.touched),
+                      'is-valid':
+                        signUpForm?.get('password')?.valid &&
+                        (signUpForm?.get('password')?.dirty ||
+                          signUpForm?.get('password')?.touched)
+                    }"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                  signUpForm?.get('password')?.invalid &&
+                  (signUpForm?.get('password')?.dirty ||
+                    signUpForm?.get('password')?.touched) && signUpForm?.get('password')?.errors?.['required']"
+                    >Password cannot be blank</span
+                  >
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                  signUpForm?.get('password')?.invalid &&
+                  (signUpForm?.get('password')?.dirty ||
+                  signUpForm?.get('password')?.touched) && signUpForm?.get('password')?.errors?.['minlength']"
+                    >Password need to have a minimum of 4 characters</span
+                  >
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    formControlName="confirmPassword"
+                    [ngClass]="{
+                      'is-invalid':
+                        signUpForm?.get('confirmPassword')?.invalid &&
+                        (signUpForm?.get('confirmPassword')?.dirty ||
+                          signUpForm?.get('confirmPassword')?.touched),
+                      'is-valid':
+                        signUpForm?.get('confirmPassword')?.valid &&
+                        (signUpForm?.get('confirmPassword')?.dirty ||
+                          signUpForm?.get('confirmPassword')?.touched)
+                    }"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                  signUpForm?.get('confirmPassword')?.invalid &&
+                  (signUpForm?.get('confirmPassword')?.dirty ||
+                    signUpForm?.get('confirmPassword')?.touched) && signUpForm?.get('confirmPassword')?.errors?.['required']"
+                    >Confirm Password cannot be blank</span
+                  >
+                  <span
+                  class="text-danger"
+                  *ngIf="
+                signUpForm?.invalid &&
+                (signUpForm?.dirty ||
+                  signUpForm?.touched) && signUpForm?.errors?.['compareValues']"
+                  >Password and Confirm Password do not match</span
+                >
+                </div>
+              </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          id="password"
-          formControlName="password"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input
-          type="password"
-          class="form-control"
-          name="confirmPassword"
-          id="confirmPassword"
-          formControlName="confirmPassword"
-        />
+              <div class="d-grid mt-5 py-2">
+                <button
+                  type="submit"
+                  [disabled]="!signUpForm.valid"
+                  class="btn btn-primary"
+                >
+                  Create Account
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="card-footer text-right">
-      <button
-        type="submit"
-        [disabled]="!signUpForm.valid"
-        class="btn btn-success"
-      >
-        Create Account
-      </button>
-    </div>
-  </form>
-</div>
+  </div>
+</section>

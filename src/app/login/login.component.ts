@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
   clickSubmit() {
-    console.log(this.loginForm.value);
+
     this.authService.login(this.loginForm.value).subscribe({
-      next: (user) => {
-        console.log('next response', user);
+      next: (response) => {
+        console.log('next response', response);
         this.loggedIn = true;
       },
       error: (error) => console.log(error.error),

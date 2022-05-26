@@ -1,34 +1,53 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Login</h3>
-  </div>
-  <form [formGroup]="loginForm" (ngSubmit)="clickSubmit()">
-    <div class="card-body">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="text"
-          class="form-control"
-          name="email"
-          id="email"
-          formControlName="email"
-        />
-      </div>
+<section class="vh-100" style="background-color: #f2f5fc">
+  <div class="container py-5 h-75">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-4">Sign in</h3>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          id="password"
-          formControlName="password"
-        />
-      </div>
-
-      <div class="card-footer">
-        <a (click)="clickSubmit()" class="btn btn-success">Login</a>
+            <form [formGroup]="loginForm" (ngSubmit)="clickSubmit()">
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                  />
+                </div>
+              </div>
+              <div>
+                <div class="mb-4">
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      id="password"
+                      formControlName="password"
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <a href="#">Forgot password?</a>
+                </div>
+                <div class="d-grid mt-4 py-2" >
+                <button
+                  (click)="clickSubmit()"
+                  class=" btn btn-primary"
+                >
+                  Login
+                </button>
+              </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </form>
-</div>
+  </div>
+</section>

@@ -1,35 +1,37 @@
 <nav
-  class="navbar navbar-expand-lg navbar-dark sticky-top py-0"
-  style="background-color: #414549"
+  class="navbar navbar-expand-lg bg-light sticky-top "
+  
 >
-  <div class="container-fluid text-white">
+  <div class="container-fluid ">
     <a class="navbar-brand" routerLink="welcome" routerLinkActive="active"
-      >Project Planner</a
+      >
+      <img src="../../assets/vector-logo.svg" style="height:40px">
+     </a
     >
 
-    <ul class="navbar-nav me-auto" *ngIf="loggedIn">
-      <li class="nav-item">
+    <ul class="navbar-nav me-auto text-dark" *ngIf="loggedIn">
+      <li class="nav-item ">
         <a
-          class="nav-link"
+          class="nav-link text-dark"
           routerLink="dashboard-admin"
           routerLinkActive="active"
           >Dashboard</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="manage-users" routerLinkActive="active"
+        <a class="nav-link text-dark" routerLink="manage-users" routerLinkActive="active"
           >Users</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link btn" routerLinkActive="active" (click)="logout()"
+        <a class="nav-link btn text-dark" routerLinkActive="active" (click)="logout()"
           >Logout</a
         >
       </li>
     </ul>
 
     <div class="dropdown" *ngIf="loggedIn">
-      <a class="dropdown-toggle nav-link text-light" role="button" id="userOptions" data-bs-toggle="dropdown" aria-expanded="false">Welcome user</a>
+      <a class="dropdown-toggle nav-link text-dark" role="button" id="userOptions" data-bs-toggle="dropdown" aria-expanded="false">Welcome user</a>
       <div class="dropdown-menu" aria-labelledby="userOptions">
         <a class="dropdown-item">Edit Profile</a>
         <a class="dropdown-item" (click)="logout()">Logout</a>

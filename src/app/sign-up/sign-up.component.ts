@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  AsyncValidatorFn,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError, first, map, Observable } from 'rxjs';
 import { UsersApiService } from '../Services/users-api.service';
 
 @Component({
@@ -13,21 +23,66 @@ export class SignUpComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     public usersApi: UsersApiService
-  ) {}
+  ) {
+    this.userExistsValidator();
+  }
 
-  signUpForm = this.formBuilder.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required]],
-  });
+  signUpForm = this.formBuilder.group(
+    {
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: [
+        '',
+        {
+          validators: [Validators.required, Validators.email],
+          asyncValidators: [this.userExistsValidator()],
+          updateOn: 'blur',
+        },
+      ],
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      confirmPassword: ['', [Validators.required]],
+    },
+    {
+      validators: this.compareValues('confirmPassword', 'password'),
+    }
+  );
 
-  ngOnInit(): void {}
+  compareValues(
+    controlToValidate: string,
+    controlToCompare: string
+  ): ValidatorFn {
+    return (formGroup: AbstractControl): ValidationErrors | null => {
+      if (!(formGroup.get(controlToValidate) as FormControl).value) return null;
+
+      if (
+        (formGroup.get(controlToValidate) as FormControl).value ==
+        (formGroup.get(controlToCompare) as FormControl).value
+      ) {
+        return null;
+      } else {
+        (formGroup.get(controlToValidate) as FormControl).setErrors({
+          compareValues: { valid: false },
+        });
+        return { compareValues: { valid: false } };
+      }
+    };
+  }
+
+  userExistsValidator(): AsyncValidatorFn | null {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.usersApi.findUserByEmail(control.value).pipe(
+        map((user) => (user.data[0].email ? { userExists: true } : null)),
+        catchError(async (err) => null)
+      );
+    };
+  }
+
+  ngOnInit(): void {
+
+  }
 
   clickSubmit() {
-    alert('Account created successfully');
-    console.log(this.signUpForm);
+
     this.usersApi
       .createUsers({
         firstName: this.signUpForm.value.firstName,
@@ -37,6 +92,7 @@ export class SignUpComponent implements OnInit {
       })
       .subscribe((data: {}) => {
         this.router.navigate(['/login']);
+        alert('Account created successfully');
       });
 
     // this.router.navigate(['/login'], {

@@ -13,10 +13,10 @@ export class AppComponent {
   constructor(private authService: AuthenticationService) {}
 
   ngOnInit() {
-    this.setCurrentUser();
+    this.getCurrentUser();
   }
 
-  setCurrentUser() {
+  getCurrentUser() {
     const currentUser: UserAuth = JSON.parse(
       localStorage.getItem('currentUser') || '{}'
     );

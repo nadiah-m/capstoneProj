@@ -22,6 +22,12 @@ export class UsersApiService {
     return this.http.get<ResponseObject>(this.apiURL + '/api/Users/' + id);
   }
 
+  findUserByEmail(email: string) {
+    return this.http.get<ResponseObject>(
+      this.apiURL + '/api/Users/userExists?email=' + email
+    );
+  }
+
   createUsers(userData: any) {
     return this.http
       .post<any>(this.apiURL + '/api/Users/signup', userData)
