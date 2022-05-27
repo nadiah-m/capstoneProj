@@ -9,8 +9,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-
-
 import { LoginComponent } from './login/login.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -21,6 +19,8 @@ import { EditClientComponent } from './edit-client/edit-client.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AssignUsersComponent } from './assign-users/assign-users.component';
 import { AssignProjectComponent } from './assign-project/assign-project.component';
+
+import { ProjectDetailsComponent } from './project-details/project-details.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { AssignProjectComponent } from './assign-project/assign-project.componen
     EditClientComponent,
     ManageUsersComponent,
     AssignUsersComponent,
-    AssignProjectComponent
+    AssignProjectComponent,
+    ProjectDetailsComponent
   ],
   imports: [
     BrowserModule,

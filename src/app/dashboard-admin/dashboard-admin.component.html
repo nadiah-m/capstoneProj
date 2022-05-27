@@ -1,186 +1,160 @@
 <div class="container-fluid">
   <h4>Hi userfirstName!</h4>
-  <div class="row">
-    <div class="col-3 align-self-stretch">
-      <!-- List of projects -->
-      <div class="d-flex justify-content-left">
-        <h5>Projects</h5>
-      </div>
-      <div class="">
-        <ul class="list-group border-0 d-flex">
-          <button
-            *ngFor="let project of projectList"
-            type="button"
-            (click)="getProjectDetails(project.id)"
-            class="list-group-item border-0 text-start"
-          >
-            {{ project.projectName }}
-          </button>
-        </ul>
-      </div>
-      <div class="d-flex justify-content-left">
+  <!--
+  <app-sidebar-dashboard
+    [projectList]="projectList"
+    [clientList]="clientList"
+    (selectProject)="projectIdClicked = $event"
+  ></app-sidebar-dashboard>-->
+  <nav
+    id="sidebarMenu"
+    class="collapse d-lg-block sidebar bg-white overflow-scroll"
+  >
+    <div class="position-sticky">
+      <!--- Project List --->
+      <div class="list-group list-group-flush mx-3 mt-5">
+        <button class="list-group-item list-group-item-action py-2"  routerLink="/dashboard-admin"
+        >Dashboard</button>
         <button
-          class="btn btn-secondary"
+          class="btn btn-outline-primary btn-sm mt-4"
           routerLink="/create-project"
           routerLinkActive="active"
+          style="border-radius: 0.5rem; width: 4rem"
         >
-          Add new project
-        </button>
-
-        <!-- List of clients -->
-      </div>
-      <h5>Current Clients</h5>
-      <ul *ngFor="let client of clientList" class="list-group border-0 d-flex">
-        <li class="list-group-item border-0 text-start">
-          {{ client.clientName }}
-
-          <br />
-          <!-- <button (click)="clickEdit(client.id)" class="btn btn-secondary">
-            Edit
-          </button>
-          <button (click)="clickDelete(client.id)" class="btn btn-secondary">
-            Delete
-          </button> -->
-        </li>
-      </ul>
-      <button
-        class="btn btn-secondary"
-        routerLink="/create-client"
-        routerLinkActive="active"
-      >
-        Add new clients
-      </button>
-    </div>
-
-    <!-- Project body details -->
-    <div class="col-8 align-self-stretch">
-      <h5>Project Details</h5>
-      <div>
-        <div class="card">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Start Date</th>
-                <th scope="col">Client</th>
-                <th scope="col">Project Cost</th>
-                <th scope="col">Current Expenditure</th>
-                <th scope="col">Available Funds</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let project of projectDetails" class="projectDetails">
-                <td>{{ project.projectName }}</td>
-                <td>{{ project.startDate | date }}</td>
-                <td>{{ clientProject.clientName }}</td>
-                <td>{{ project.projectCost | currency }}</td>
-                <td>{{ project.currentExp | currency }}</td>
-                <td>{{ project.availFunds | currency }}</td>
-                <td>{{ project.status }}</td>
-                <td>
-                  <button
-                    (click)="clickEdit(project.id)"
-                    class="btn btn-outline-secondary"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    (click)="clickDelete(project.id)"
-                    class="btn btn-outline-secondary"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Team member details -->
-        <h5>Team Members</h5>
-        <div class="card">
-          <button
-            class="btn btn-outline-secondary"
-            data-bs-toggle="modal"
-            data-bs-target="#displayUsers"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-plus-square"
+            viewBox="0 0 16 16"
           >
-            Add team members
-          </button>
-          <!-- Modal to add users-->
-          <div class="modal" id="displayUsers">
-            <form
-              [formGroup]="addTeamMemberForm"
-              (ngSubmit)="addTeam(projectDetails[0].id)"
+            <path
+              d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+            />
+            <path
+              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+            />
+          </svg>
+          Add
+        </button>
+        <button
+          type="button"
+          class="list-group-item list-group-item-action py-2"
+          aria-current="true"
+          data-bs-toggle="collapse"
+          data-bs-target="#projects"
+          aria-expanded="false"
+          aria-controls="projects"
+        >
+          <span>Projects</span>
+        </button>
+        <ul id="projects" class="collapse list-group list-group-flush">
+          <li class="list-group-item py-1 btn">
+            <button
+              *ngFor="let project of projectList"
+              type="button"
+              (click)="goToProjectPage(project.id)"
+              class="list-group-item border-0 text-start"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Add team members</h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <select formControlName="teamMember">
-                      <option value="null">Please select</option>
-                      <option
-                        *ngFor="let user of userList"
-                        value="{{ user.id }}"
-                      >
-                        {{ user.firstName | titlecase }}
-                        {{ user.lastName | titlecase }} : {{ user.designation }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="modal-footer">
-                    <button
-                      type="submit"
-                      class="btn btn-primary"
-                      data-bs-dismiss="modal"
-                    >
-                      Add
-                    </button>
+              {{ project.projectName }}
+            </button>
+          </li>
+        </ul>
+      </div>
 
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <!-- Team member table details -->
-          <div>
+      <!--- Client List --->
+      <div class="list-group list-group-flush mx-3 mt-5">
+        <button
+          class="btn btn-outline-primary btn-sm"
+          routerLink="/create-project"
+          routerLinkActive="active"
+          style="border-radius: 0.5rem; width: 4rem"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-plus-square"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+            />
+            <path
+              d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+            />
+          </svg>
+          Add
+        </button>
+        <button
+          type="button"
+          class="list-group-item list-group-item-action py-2"
+          aria-current="true"
+          data-bs-toggle="collapse"
+          data-bs-target="#clients"
+          aria-expanded="false"
+          aria-controls="clients"
+        >
+          <span>Clients</span>
+        </button>
+        <ul
+          id="clients"
+          class="collapse list-group list-group-flush"
+          *ngFor="let client of clientList"
+        >
+          <li class="list-group-item py-1">
+            {{ client.clientName }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <!-- Project body details 
+      <div class="d-flex col-6">
+        <h5>Project Details</h5>
+        Projectid clicked is {{ projectIdClicked }}
+
+        <div>
+          <div class="card">
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">Name</th>
-
-                  <th scope="col">Designation</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">Client</th>
+                  <th scope="col">Project Cost</th>
+                  <th scope="col">Current Expenditure</th>
+                  <th scope="col">Available Funds</th>
+                  <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let user of projectTeam">
-                  <td>
-                    {{ user.firstName | titlecase }}
-                    {{ user.lastName | titlecase }}
-                  </td>
-
-                  <td>
-                    {{ user.designation }}
-                  </td>
+                <tr
+                  *ngFor="let project of projectDetails"
+                  class="projectDetails"
+                >
+                  <td>{{ project.projectName }}</td>
+                  <td>{{ project.startDate | date }}</td>
+                  <td>{{ clientProject.clientName }}</td>
+                  <td>{{ project.projectCost | currency }}</td>
+                  <td>{{ project.currentExp | currency }}</td>
+                  <td>{{ project.availFunds | currency }}</td>
+                  <td>{{ project.status }}</td>
                   <td>
                     <button
-                      (click)="deleteTeamMember(user.id, projectDetails[0].id)"
-                      class="btn btn-secondary"
+                      (click)="clickEdit(project.id)"
+                      class="btn btn-outline-secondary"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      (click)="clickDelete(project.id)"
+                      class="btn btn-outline-secondary"
                     >
                       Delete
                     </button>
@@ -188,10 +162,108 @@
                 </tr>
               </tbody>
             </table>
-            <br />
+          </div>
+
+          <!-- Team member details 
+          <h5>Team Members</h5>
+          <div class="card">
+            <button
+              class="btn btn-outline-secondary"
+              data-bs-toggle="modal"
+              data-bs-target="#displayUsers"
+            >
+              Add team members
+            </button>
+            <!-- Modal to add users
+            <div class="modal" id="displayUsers">
+              <form
+                [formGroup]="addTeamMemberForm"
+                (ngSubmit)="addTeam(projectDetails[0].id)"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Add team members</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <select formControlName="teamMember">
+                        <option value="null">Please select</option>
+                        <option
+                          *ngFor="let user of userList"
+                          value="{{ user.id }}"
+                        >
+                          {{ user.firstName | titlecase }}
+                          {{ user.lastName | titlecase }} :
+                          {{ user.designation }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        Add
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Team member table details 
+            <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+
+                    <th scope="col">Designation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of projectTeam">
+                    <td>
+                      {{ user.firstName | titlecase }}
+                      {{ user.lastName | titlecase }}
+                    </td>
+
+                    <td>
+                      {{ user.designation }}
+                    </td>
+                    <td>
+                      <button
+                        (click)="
+                          deleteTeamMember(user.id, projectDetails[0].id)
+                        "
+                        class="btn btn-secondary"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <br />
+            </div>
           </div>
         </div>
       </div>
+    </div> -->
     </div>
   </div>
 </div>

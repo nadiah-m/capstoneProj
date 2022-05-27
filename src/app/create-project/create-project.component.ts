@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { take } from 'rxjs';
 import { ClientsService } from '../Services/clients.service';
 import { ProjectService } from '../Services/project.service';
 
@@ -12,6 +12,7 @@ import { ProjectService } from '../Services/project.service';
 })
 export class CreateProjectComponent implements OnInit {
   errorMessage: string = '';
+  clientId: any = [];
 
   constructor(
     private router: Router,
@@ -26,15 +27,13 @@ export class CreateProjectComponent implements OnInit {
     projectDesc: [null],
     projectCost: [null],
     currentExp: [null],
-    availFunds: [null],
     status: [null],
     clientId: [],
   });
+
   ngOnInit() {
     this.getClientNames();
   }
-
-  clientId: any = [];
 
   getClientNames() {
     this.clientService
@@ -44,12 +43,28 @@ export class CreateProjectComponent implements OnInit {
 
   clickSubmit() {
     console.log(this.newProjectForm.value);
-    this.projectService.createProject(this.newProjectForm.value).subscribe({
-   
-      error: (error) => {
-        (this.errorMessage = error.error), console.log(error.error);
-      },
-      complete: () => this.router.navigate(['/dashboard-admin']),
-    });
+    this.projectService
+      .createProject({
+        projectName: this.newProjectForm.value.projectName,
+        startDate: this.newProjectForm.value.startDate,
+        projectDesc: this.newProjectForm.value.projectDesc,
+        projectCost: this.newProjectForm.value.projectCost,
+        currentExp: this.newProjectForm.value.currentExp,
+        availFunds:
+          this.newProjectForm.value.projectCost -
+          this.newProjectForm.value.currentExp,
+        status: this.newProjectForm.value.status,
+        clientId: this.newProjectForm.value.clientId,
+      })
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/dashboard-admin']);
+        },
+        error: (error) => {
+          this.errorMessage = error.error;
+          console.log(error.error);
+          return;
+        },
+      });
   }
 }

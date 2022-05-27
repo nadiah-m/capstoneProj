@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientsService } from '../Services/clients.service';
 import { ProjectService } from '../Services/project.service';
 import { TeamService } from '../Services/team.service';
@@ -18,10 +18,9 @@ export class DashboardAdminComponent implements OnInit {
     public clientService: ClientsService,
     public teamService: TeamService,
     public userService: UsersApiService,
-    private formBuilder: FormBuilder
-  ) {
-    this.getProjectList();
-  }
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
+  ) {}
 
   projectList: any = [];
   clientList: any = [];
@@ -29,6 +28,7 @@ export class DashboardAdminComponent implements OnInit {
   projectTeam: any = [];
   projectDetails: any = [];
   clientProject: any = [];
+  projectIdClicked: any;
 
   addTeamMemberForm = this.formBuilder.group({
     teamMember: [null],
@@ -43,10 +43,15 @@ export class DashboardAdminComponent implements OnInit {
     this.getProjectClient(getClientId);
   }
 
+  goToProjectPage(projectId: any) {
+    console.log('go to project page', projectId);
+    this.router.navigate(['project', projectId], { relativeTo: this.route });
+  }
+
   getProjectList() {
     this.projectService.getProjectList().subscribe((res) => {
       this.projectList = res.data;
-      // console.log('projectList', this.projectList);
+      console.log('projectList', this.projectList);
       return this.projectList;
     });
   }
@@ -115,12 +120,12 @@ export class DashboardAdminComponent implements OnInit {
   clickDelete(projectId: any) {
     this.projectService.deleteProject(projectId).subscribe((data: {}) => {
       this.getProjectList();
-      
     });
   }
 
   ngOnInit(): void {
     this.getClientList();
     this.getUserList();
+    this.getProjectList();
   }
 }
