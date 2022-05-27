@@ -34,17 +34,8 @@ export class DashboardAdminComponent implements OnInit {
     teamMember: [null],
   });
 
-  getProjectDetails(projectId: any) {
-    let obj = this.projectList.filter((proj: any) => proj.id == projectId);
-    this.projectDetails = obj;
-    this.getProjectTeam(projectId);
-    console.log('getprojectdetails', this.projectDetails);
-    let getClientId = this.projectDetails[0].clientId;
-    this.getProjectClient(getClientId);
-  }
-
+  
   goToProjectPage(projectId: any) {
-    console.log('go to project page', projectId);
     this.router.navigate(['project', projectId], { relativeTo: this.route });
   }
 
@@ -70,14 +61,7 @@ export class DashboardAdminComponent implements OnInit {
     });
   }
 
-  getProjectClient(clientId: any) {
-    let clientObj = this.clientList.filter(
-      (client: any) => client.id == clientId
-    );
-    // console.log('getProjectClient method', clientObj);
-    this.clientProject = clientObj[0];
-    return this.clientProject;
-  }
+
 
   getProjectTeam(projectId: any) {
     this.teamService.getProjectTeam(projectId).subscribe((res) => {

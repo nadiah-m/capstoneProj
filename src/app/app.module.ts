@@ -6,6 +6,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgChartsModule} from 'ng2-charts'
 
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -45,7 +46,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
     NgbModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgChartsModule
 
   ],
   providers: [],
