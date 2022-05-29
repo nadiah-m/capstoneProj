@@ -21,7 +21,8 @@ export class EditProjectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     public projectService: ProjectService,
-    private clientService: ClientsService
+    private clientService: ClientsService,
+
   ) {
     // console.log(this?.router?.getCurrentNavigation()?.extras?.state);
     this.projectId =

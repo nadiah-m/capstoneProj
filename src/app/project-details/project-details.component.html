@@ -1,45 +1,287 @@
+<section class="vh-100" style="background-color: #f2f5fc">
+  <div class="container justify-content-evenly">
+    <div class="row">
+      <div class="col">
+        <h1>{{ projectDetails.projectName }}</h1>
+      </div>
+      <div class="col justify-content-end mt-3 text-end">
+        <button class="btn btn-sm" (click)="clickEdit(projectDetails.id)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-pencil-square"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+            />
+          </svg>
+        </button>
+        <button class="btn btn-sm" (click)="clickDelete(projectDetails.id)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="currentColor"
+            class="bi bi-trash3"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="row gx-5 mt-5">
+      <div class="col-4">
+        <div
+          class="card border shadow-2-strong"
+          style="border-radius: 1rem; height: 16rem"
+        >
+          <div class="card-body text-start">
+            <h5 class="lead">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-cash-coin"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"
+                />
+                <path
+                  d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"
+                />
+                <path
+                  d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"
+                />
+                <path
+                  d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"
+                />
+              </svg>
+              Cost
+            </h5>
 
+            <h3 class="mt-4">
+              ${{ projectDetails.currentExp | number: "1.0-0" }}
+            </h3>
+            <p>
+              total spent vs ${{ projectDetails.projectCost | number: "1.0-0" }}
+              total budget
+            </p>
 
-<div class="container d-flex justify-content-evenly">
-  <div class="row gx-5">
-    <div class="col">
-     <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">Custom column padding</div>
-    </div>
+            <p>Remaining:</p>
+            <h4>${{ projectDetails.availFunds | number: "1.0-0" }}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div
+          class="card border shadow-2-strong"
+          style="border-radius: 1rem; height: 16rem"
+        >
+          <div class="card-body text-start">
+            <h5 class="lead">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="currentColor"
+                class="bi bi-ticket-detailed"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5Zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5ZM5 7a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H5Z"
+                />
+                <path
+                  d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6V4.5ZM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5h-13Z"
+                />
+              </svg>
+              Details
+            </h5>
+            <p class="mt-4">Start date</p>
+            <h5>{{ projectDetails.startDate | date }}</h5>
+            <p class="mt-4">Client</p>
+            <h5>{{ projectClient.clientName }}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div
+          class="card border shadow-2-strong"
+          style="border-radius: 1rem; height: 16rem"
+        >
+          <div class="card-body text-start">
+            <h5 class="lead">Status</h5>
+            <h3 class="mt-3">{{ projectDetails.status }}</h3>
+            <h5 class="lead mt-3">About</h5>
 
+            <p class="mt-4 text-start">{{ projectDetails.projectDesc }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mt-5">
+        <div class="card border shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body text-start">
+            <div class="row">
+              <div class="col">
+                <h5 class="lead">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-people-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"
+                    />
+                    <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                  </svg>
+                  Team members
+                </h5>
+              </div>
+              <div class="col-1 justify-content-end">
+                <div class="">
+                  <button
+                    class="btn btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#displayUsers"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-plus-square"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                      />
+                      <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                      />
+                    </svg>
+                  </button>
+                  <div class="modal" id="displayUsers">
+                    <form
+                      [formGroup]="addTeamMemberForm"
+                      (ngSubmit)="addTeam(projectDetails.id)"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Add team members</h5>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body">
+                            <select formControlName="teamMember">
+                              <option value="null">Please select</option>
+                              <option
+                                *ngFor="let user of userList"
+                                value="{{ user.id }}"
+                              >
+                                {{ user.firstName | titlecase }}
+                                {{ user.lastName | titlecase }} :
+                                {{ user.designation }}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="submit"
+                              class="btn btn-primary"
+                              data-bs-dismiss="modal"
+                            >
+                              Add
+                            </button>
+
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+
+                    <th scope="col">Designation</th>
+                    <th scope="col">Email address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of projectTeam">
+                    <td>
+                      {{ user.firstName | titlecase }}
+                      {{ user.lastName | titlecase }}
+                    </td>
+
+                    <td>
+                      {{ user.designation }}
+                    </td>
+                    <td>
+                      {{ user.email }}
+                    </td>
+                    <td class="p-1">
+                      <button
+                        class="btn btn-sm"
+                        (click)="deleteTeamMember(user.id, projectDetails.id)"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="14"
+                          height="14"
+                          fill="currentColor"
+                          class="bi bi-trash3"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+                          />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-
+</section>

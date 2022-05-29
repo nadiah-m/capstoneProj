@@ -39,7 +39,7 @@ export class DashboardAdminComponent implements OnInit {
     this.router.navigate(['project', projectId], { relativeTo: this.route });
   }
 
-  getProjectList() {
+  public getProjectList() {
     this.projectService.getProjectList().subscribe((res) => {
       this.projectList = res.data;
       console.log('projectList', this.projectList);
@@ -63,32 +63,6 @@ export class DashboardAdminComponent implements OnInit {
 
 
 
-  getProjectTeam(projectId: any) {
-    this.teamService.getProjectTeam(projectId).subscribe((res) => {
-      // console.log(res.data);
-      this.projectTeam = res.data;
-    });
-  }
-
-  addTeam(projectId: any) {
-    let userIdToAdd = Number(this.addTeamMemberForm.value.teamMember);
-    // console.log('userIdToAdd', userIdToAdd);
-    // console.log('this project', projectId);
-    this.teamService
-      .addTeamMember(userIdToAdd, projectId)
-      .subscribe((data: {}) => {
-        this.getProjectTeam(projectId);
-      });
-  }
-
-  deleteTeamMember(userId: any, projectId: any) {
-    console.log('delete userId', userId);
-    console.log('delete projectId', projectId);
-    this.teamService
-      .deleteTeamFromApi(userId, projectId)
-      .subscribe((data: {}) => this.getProjectTeam(projectId));
-  }
-
   clickEdit(projectId: any) {
     this.router.navigate(['/edit-project'], {
       state: {
@@ -97,9 +71,7 @@ export class DashboardAdminComponent implements OnInit {
     });
   }
 
-  clickTeam(projectId: any) {
-    this.getProjectTeam(projectId);
-  }
+ 
 
   clickDelete(projectId: any) {
     this.projectService.deleteProject(projectId).subscribe((data: {}) => {
