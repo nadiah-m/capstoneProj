@@ -1,41 +1,49 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Assign Users</h3>
+<section class="vh-100" style="background-color: #f2f5fc">
+  <div class="container py-5 h-75">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-4">Update Users</h3>
+
+            <form [formGroup]="updateUserAssign" (ngSubmit)="clickSubmit()">
+              {{ userIdDetails?.firstName }} {{ userIdDetails?.lastName }} -
+              {{ userIdDetails?.email }}
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="role">Role: </label>
+                  <select
+                    name="role"
+                    class="form-control"
+                    id="role"
+                    formControlName="role"
+                  >
+                    <option value="null">Please Select</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-4">
+                <div class="form-group">
+                  <label for="designation">Designation</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="designation"
+                    id="designation"
+                    formControlName="designation"
+                    value="{{ userIdDetails?.designation }}"
+                  />
+                </div>
+              </div>
+              <div class="d-grid mt-5">
+                <a (click)="clickSubmit()" class="btn btn-primary">Update</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <form [formGroup]="updateUserAssign" (ngSubmit)="clickSubmit()">
-      {{ userIdDetails?.firstName }} {{ userIdDetails?.lastName }} -
-      {{ userIdDetails?.email }}
-
-      <div class="form-group">
-        <label for="role">Role: </label>
-        <select
-          name="role"
-          class="form-control"
-          id="role"
-          formControlName="role"
-        >
-          <option value="null">Please Select</option>
-          <option value="Admin">Admin</option>
-          <option value="User">User</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="designation">Designation</label>
-        <input
-          type="text"
-          class="form-control"
-          name="designation"
-          id="designation"
-          formControlName="designation"
-          value="{{ userIdDetails?.designation }}"
-        />
-      </div>
-
-      <div class="card-footer">
-        <a (click)="clickSubmit()" class="btn btn-success">Update</a>
-      </div>
-    </form>
-  </div>
-</div>
+</section>
