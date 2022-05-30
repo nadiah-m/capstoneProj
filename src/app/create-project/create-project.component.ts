@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from 'rxjs';
-import { ClientsService } from '../Services/clients.service';
-import { ProjectService } from '../Services/project.service';
+import { ClientsService } from '../_Services/clients.service';
+import { ProjectService } from '../_Services/project.service';
 
 @Component({
   selector: 'app-create-project',

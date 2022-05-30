@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +23,8 @@ import { AssignProjectComponent } from './assign-project/assign-project.componen
 
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
     AssignUsersComponent,
     AssignProjectComponent,
     ProjectDetailsComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    DashboardUserComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,9 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
     NgChartsModule
 
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

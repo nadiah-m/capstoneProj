@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ClientsService } from '../Services/clients.service';
-import { ProjectService } from '../Services/project.service';
+import { ClientsService } from '../_Services/clients.service';
+import { ProjectService } from '../_Services/project.service';
 import { Project } from './project';
 
 @Component({

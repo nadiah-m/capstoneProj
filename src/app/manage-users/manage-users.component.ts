@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsersApiService } from '../Services/users-api.service';
+import { UsersApiService } from '../_Services/users-api.service';
 
 @Component({
   selector: 'app-manage-users',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../Services/project.service';
+import { ProjectService } from '../_Services/project.service';
 
 @Component({
   selector: 'app-admin-home',

@@ -3,7 +3,7 @@
     <a class="navbar-brand" routerLink="welcome" routerLinkActive="active">
       <img src="../../assets/vector-logo.svg" style="height: 40px" />
     </a>
-
+    <!--
     <ul class="navbar-nav me-auto text-dark" *ngIf="loggedIn">
       <li class="nav-item">
         <button
@@ -30,7 +30,7 @@
         >
       </li>
     </ul>
-
+-->
     <div class="dropdown" *ngIf="loggedIn">
       <a
         class="dropdown-toggle nav-link text-dark"
@@ -38,10 +38,11 @@
         id="userOptions"
         data-bs-toggle="dropdown"
         aria-expanded="false"
-        >Welcome user</a
+        >Welcome {{ userFirstName | titlecase }}</a
       >
       <div class="dropdown-menu" aria-labelledby="userOptions">
         <a class="dropdown-item">Edit Profile</a>
+        <a class="dropdown-item" (click)="goToDashboard()">Dashboard</a>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
     </div>

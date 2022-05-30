@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { UserAuth } from '../models/userAuth';
 
@@ -8,10 +10,10 @@ import { UserAuth } from '../models/userAuth';
 })
 export class AuthenticationService {
   apiURL = 'http://localhost:5293';
-  private currentUserSubject: BehaviorSubject<any>;
+  public currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<UserAuth>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('currentUser') || '{}')
     );
@@ -26,6 +28,8 @@ export class AuthenticationService {
         if (user) {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
+          console.log(this.currentUserSubject);
+          return user;
         }
       })
     );
@@ -38,5 +42,6 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.router.navigate(['welcome'])
   }
 }

@@ -2,9 +2,7 @@
   <div class="container justify-content-evenly">
     <div class="row">
       <div class="col">
-        <div class="">
-     
-        </div>
+        <div class=""></div>
       </div>
 
       <nav
@@ -68,6 +66,19 @@
             </ul>
           </div>
 
+          <!--- Manage users --->
+          <div class="list-group list-group-flush mx-3 mt-5">
+            <button
+              type="button"
+              class="list-group-item list-group-item-action py-2"
+            
+              routerLink="/manage-users"
+              routerLinkActive="active"
+            >
+              <span>Users</span>
+            </button>
+          </div>
+
           <!--- Client List --->
           <div class="list-group list-group-flush mx-3 mt-5">
             <button
@@ -118,4 +129,5 @@
       </nav>
       <router-outlet></router-outlet>
     </div>
-    
+  </div>
+</section>

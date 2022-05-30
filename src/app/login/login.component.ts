@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../Services/authentication.service';
+import { take } from 'rxjs';
+import { AuthenticationService } from '../_Services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -25,15 +26,22 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
   clickSubmit() {
-    this.authService.login(this.loginForm.value).subscribe({
-      next: (response) => {
-        console.log('next response', response);
-        this.loggedIn = true;
-      },
-      error: (error) => {
-        (this.errorMessage = error.error), console.log(error.error);
-      },
-      complete: () => this.router.navigate(['/dashboard-admin/home']),
-    });
+    this.authService
+      .login(this.loginForm.value)
+      .pipe(take(1))
+      .subscribe({
+        next: (user) => {
+          this.loggedIn = true;
+
+          if (user.role == 'User' || user.role == '') {
+            this.router.navigate(['/dashboard-user', user.id]);
+          } else if (user.role == 'Admin') {
+            this.router.navigate(['/dashboard-admin/home']);
+          }
+        },
+        error: (error) => {
+          (this.errorMessage = error.error), console.log(error.error);
+        },
+      });
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClientsService } from '../Services/clients.service';
-import { ProjectService } from '../Services/project.service';
-import { TeamService } from '../Services/team.service';
-import { UsersApiService } from '../Services/users-api.service';
+import { ClientsService } from '../_Services/clients.service';
+import { ProjectService } from '../_Services/project.service';
+import { TeamService } from '../_Services/team.service';
+import { UsersApiService } from '../_Services/users-api.service';
 
 @Component({
   selector: 'app-dashboard-admin',

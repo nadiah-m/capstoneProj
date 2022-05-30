@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import { ResponseObject } from '../Services/responseObj';
-import { Users } from '../Services/users';
+import { ResponseObject } from '../models/responseObj';
+import { Users } from '../_Services/users';
 
-import { UsersApiService } from '../Services/users-api.service';
+import { UsersApiService } from '../_Services/users-api.service';
 
 @Component({
   selector: 'app-welcome',

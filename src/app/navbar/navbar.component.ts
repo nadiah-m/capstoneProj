@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../Services/authentication.service';
+import { AuthenticationService } from '../_Services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +10,10 @@ import { AuthenticationService } from '../Services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
   loggedIn: boolean = false;
+  userFirstName: string = '';
+  userRole: string = '';
+  userId: number = 0;
+
   constructor(
     private authService: AuthenticationService,
     private router: Router
@@ -24,15 +28,21 @@ export class NavbarComponent implements OnInit {
     this.loggedIn = false;
   }
 
-  goToHomeDashboard() {
-    this.router.navigate(['/dashboard-admin/home']);
+  goToDashboard() {
+    if (this.userRole == '' || this.userRole == 'User') {
+      this.router.navigate(['/dashboard-user', this.userId]);
+    } else if (this.userRole == 'Admin') {
+      this.router.navigate(['/dashboard-admin/home']);
+    }
   }
 
   getCurrentUser() {
     this.authService.currentUser.subscribe({
       next: (user) => {
-        // console.log(user.email);
-        // console.log(this.loggedIn);
+        this.userFirstName = user.firstName;
+        this.userRole = user.role;
+        this.userId = user.id;
+        // console.log(this.userId);
 
         if (user.email) {
           this.loggedIn = true;

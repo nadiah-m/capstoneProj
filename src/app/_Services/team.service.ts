@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponseObject } from './responseObj';
+import { ResponseObject } from '../models/responseObj';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +32,19 @@ export class TeamService {
 
   //delete user to project
   deleteTeamFromApi(userId: any, projectId: any) {
-    return this.http.delete(this.apiURL + '/api/Team/UserProjects?userId='+userId+'&projectId='+projectId);
+    return this.http.delete(
+      this.apiURL +
+        '/api/Team/UserProjects?userId=' +
+        userId +
+        '&projectId=' +
+        projectId
+    );
+  }
+
+  //get projects assigned to user
+  getAssignedProjects(userId: any): Observable<ResponseObject> {
+    return this.http.get<ResponseObject>(
+      this.apiURL + '/api/Team/UserProjects?id=' + userId
+    );
   }
 }

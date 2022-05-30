@@ -1,0 +1,27 @@
+<section class="" style="background-color: #f2f5fc">
+  <div class="container py-4 justify-content-evenly">
+    <h4 class="mt-4">Your Projects at a glance</h4>
+
+    <div class="card border shadow-2-strong mt-4" style="border-radius: 1rem">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of assignedProjects">
+            <td>
+              {{ project.projectName | titlecase }}
+            </td>
+
+            <td>
+              {{ project.status | titlecase }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
