@@ -2,13 +2,16 @@
   <div class="container py-5 h-75">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
           <div class="card-body p-5 text-center">
-            <h3 class="mb-4">Update Users</h3>
+            <h3 class="">Update User</h3>
 
             <form [formGroup]="updateUserAssign" (ngSubmit)="clickSubmit()">
-              {{ userIdDetails?.firstName }} {{ userIdDetails?.lastName }} -
-              {{ userIdDetails?.email }}
+              <p class="mt-0">for</p>
+              <p class="lead mt-0 py-0">
+                {{ userIdDetails?.firstName }} {{ userIdDetails?.lastName }} :
+                {{ userIdDetails?.email }}
+              </p>
               <div class="mb-4">
                 <div class="form-group">
                   <label for="role">Role: </label>

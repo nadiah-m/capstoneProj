@@ -10,10 +10,12 @@ import { DashboardUserComponent } from './dashboard-user/dashboard-user.componen
 import { EditClientComponent } from './edit-client/edit-client.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { LoginComponent } from './login/login.component';
-import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageUsersComponent } from './users-list/manage-users.component';
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AdminGuard } from './_guards/admin.guard';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -23,19 +25,60 @@ const routes: Routes = [
   {
     path: 'dashboard-admin',
     component: DashboardAdminComponent,
+    canActivate: [AdminGuard],
     children: [
-      { path: 'project/:id', component: ProjectDetailsComponent },
-      { path: 'home', component: AdminHomeComponent },
+      {
+        path: 'project/:id',
+        component: ProjectDetailsComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: 'home',
+        component: AdminHomeComponent,
+        canActivate: [AdminGuard],
+      },
     ],
   },
-  { path: 'dashboard-user/:id', component: DashboardUserComponent },
-  { path: 'create-project', component: CreateProjectComponent },
-  { path: 'edit-project', component: EditProjectComponent },
-  { path: 'create-client', component: CreateClientComponent },
-  { path: 'edit-client', component: EditClientComponent },
-  { path: 'manage-users', component: ManageUsersComponent },
-  { path: 'assign-users', component: AssignUsersComponent },
-  { path: 'assign-project', component: AssignProjectComponent },
+  {
+    path: 'dashboard-user/:id',
+    component: DashboardUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-project',
+    component: CreateProjectComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'edit-project',
+    component: EditProjectComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'create-client',
+    component: CreateClientComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'edit-client',
+    component: EditClientComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'manage-users',
+    component: ManageUsersComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'assign-users',
+    component: AssignUsersComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'assign-project',
+    component: AssignProjectComponent,
+    canActivate: [AdminGuard],
+  },
 ];
 
 @NgModule({

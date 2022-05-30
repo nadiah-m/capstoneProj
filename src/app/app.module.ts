@@ -17,7 +17,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { CreateClientComponent } from './create-client/create-client.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
-import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageUsersComponent } from './users-list/manage-users.component';
 import { AssignUsersComponent } from './assign-users/assign-users.component';
 import { AssignProjectComponent } from './assign-project/assign-project.component';
 

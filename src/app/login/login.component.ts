@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (user) => {
           this.loggedIn = true;
-
+          console.log("login", user.role)
           if (user.role == 'User' || user.role == '') {
             this.router.navigate(['/dashboard-user', user.id]);
           } else if (user.role == 'Admin') {
