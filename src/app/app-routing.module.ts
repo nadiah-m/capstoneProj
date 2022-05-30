@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AssignProjectComponent } from './assign-project/assign-project.component';
 import { AssignUsersComponent } from './assign-users/assign-users.component';
 import { CreateClientComponent } from './create-client/create-client.component';
@@ -21,7 +22,10 @@ const routes: Routes = [
   {
     path: 'dashboard-admin',
     component: DashboardAdminComponent,
-    children: [{ path: 'project/:id', component: ProjectDetailsComponent }],
+    children: [
+      { path: 'project/:id', component: ProjectDetailsComponent },
+      { path: 'home', component: AdminHomeComponent },
+    ],
   },
   { path: 'create-project', component: CreateProjectComponent },
   { path: 'edit-project', component: EditProjectComponent },

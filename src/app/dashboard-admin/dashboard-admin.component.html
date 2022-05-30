@@ -1,131 +1,121 @@
-<div class="container-fluid" style="background-color: #f2f5fc">
-  <div class="d-flex row">
-    <div class="col">
-      <div class="justify-content-end">
-        <h4>Hi userfirstName!</h4>
-        <h4>Dashboard</h4>
-      </div>
-    </div>
-    <!--
-  <app-sidebar-dashboard
-    [projectList]="projectList"
-    [clientList]="clientList"
-    (selectProject)="projectIdClicked = $event"
-  ></app-sidebar-dashboard>-->
-    <nav
-      id="sidebarMenu"
-      class="collapse d-lg-block sidebar bg-white overflow-scroll"
-    >
-      <div class="position-sticky">
-        <!--- Project List --->
-        <div class="list-group list-group-flush mx-3 mt-5">
-          <button
-            class="list-group-item list-group-item-action py-2"
-            routerLink="/dashboard-admin"
-          >
-            Dashboard
-          </button>
-          <button
-            class="btn btn-outline-primary btn-sm mt-4"
-            routerLink="/create-project"
-            routerLinkActive="active"
-            style="border-radius: 0.5rem; width: 4rem"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-plus-square"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-              />
-              <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-              />
-            </svg>
-            Add
-          </button>
-          <button
-            type="button"
-            class="list-group-item list-group-item-action py-2"
-            aria-current="true"
-            data-bs-toggle="collapse"
-            data-bs-target="#projects"
-            aria-expanded="false"
-            aria-controls="projects"
-          >
-            <span>Projects</span>
-          </button>
-          <ul id="projects" class="collapse list-group list-group-flush">
-            <li class="list-group-item py-1 btn">
-              <button
-                *ngFor="let project of projectList"
-                type="button"
-                (click)="goToProjectPage(project.id)"
-                class="list-group-item border-0 text-start"
-              >
-                {{ project.projectName }}
-              </button>
-            </li>
-          </ul>
+<section class="vh-100" style="background-color: #f2f5fc">
+  <div class="container justify-content-evenly">
+    <div class="row">
+      <div class="col">
+        <div class="">
+     
         </div>
+      </div>
 
-        <!--- Client List --->
-        <div class="list-group list-group-flush mx-3 mt-5">
-          <button
-            class="btn btn-outline-primary btn-sm"
-            routerLink="/create-project"
-            routerLinkActive="active"
-            style="border-radius: 0.5rem; width: 4rem"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-plus-square"
-              viewBox="0 0 16 16"
+      <nav
+        id="sidebarMenu"
+        class="collapse d-lg-block sidebar bg-white overflow-scroll"
+      >
+        <div class="position-sticky">
+          <!--- Project List --->
+          <div class="list-group list-group-flush mx-3 mt-5">
+            <button
+              class="list-group-item list-group-item-action py-2"
+              (click)="goToHomeDashboard()"
             >
-              <path
-                d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-              />
-              <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-              />
-            </svg>
-            Add
-          </button>
-          <button
-            type="button"
-            class="list-group-item list-group-item-action py-2"
-            aria-current="true"
-            data-bs-toggle="collapse"
-            data-bs-target="#clients"
-            aria-expanded="false"
-            aria-controls="clients"
-          >
-            <span>Clients</span>
-          </button>
-          <ul
-            id="clients"
-            class="collapse list-group list-group-flush"
-            *ngFor="let client of clientList"
-          >
-            <li class="list-group-item py-1">
-              {{ client.clientName }}
-            </li>
-          </ul>
+              Dashboard
+            </button>
+            <button
+              class="btn btn-outline-primary btn-sm mt-4"
+              routerLink="/create-project"
+              routerLinkActive="active"
+              style="border-radius: 0.5rem; width: 4rem"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-plus-square"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                />
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                />
+              </svg>
+              Add
+            </button>
+            <button
+              type="button"
+              class="list-group-item list-group-item-action py-2"
+              aria-current="true"
+              data-bs-toggle="collapse"
+              data-bs-target="#projects"
+              aria-expanded="false"
+              aria-controls="projects"
+            >
+              <span>Projects</span>
+            </button>
+            <ul id="projects" class="collapse list-group list-group-flush">
+              <li class="list-group-item py-1 btn">
+                <button
+                  *ngFor="let project of projectList"
+                  type="button"
+                  (click)="goToProjectPage(project.id)"
+                  class="list-group-item border-0 text-start"
+                >
+                  {{ project.projectName }}
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <!--- Client List --->
+          <div class="list-group list-group-flush mx-3 mt-5">
+            <button
+              class="btn btn-outline-primary btn-sm"
+              routerLink="/create-project"
+              routerLinkActive="active"
+              style="border-radius: 0.5rem; width: 4rem"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-plus-square"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+                />
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                />
+              </svg>
+              Add
+            </button>
+            <button
+              type="button"
+              class="list-group-item list-group-item-action py-2"
+              aria-current="true"
+              data-bs-toggle="collapse"
+              data-bs-target="#clients"
+              aria-expanded="false"
+              aria-controls="clients"
+            >
+              <span>Clients</span>
+            </button>
+            <ul
+              id="clients"
+              class="collapse list-group list-group-flush"
+              *ngFor="let client of clientList"
+            >
+              <li class="list-group-item py-1">
+                {{ client.clientName }}
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-    <router-outlet></router-outlet>
-  </div>
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      
+      </nav>
+      <router-outlet></router-outlet>
     </div>
-  </div>
-</div>
+    

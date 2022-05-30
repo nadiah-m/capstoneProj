@@ -39,6 +39,10 @@ export class DashboardAdminComponent implements OnInit {
     this.router.navigate(['project', projectId], { relativeTo: this.route });
   }
 
+  goToHomeDashboard() {
+    this.router.navigate(['home'], { relativeTo: this.route });
+  }
+
   public getProjectList() {
     this.projectService.getProjectList().subscribe((res) => {
       this.projectList = res.data;

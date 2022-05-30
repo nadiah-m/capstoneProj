@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       error: (error) => {
         (this.errorMessage = error.error), console.log(error.error);
       },
-      complete: () => this.router.navigate(['/dashboard-admin']),
+      complete: () => this.router.navigate(['/dashboard-admin/home']),
     });
   }
 }

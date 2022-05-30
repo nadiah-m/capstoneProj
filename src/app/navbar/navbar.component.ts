@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthenticationService } from '../Services/authentication.service';
 
 @Component({
@@ -8,7 +10,10 @@ import { AuthenticationService } from '../Services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
   loggedIn: boolean = false;
-  constructor(private authService: AuthenticationService) {}
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getCurrentUser();
@@ -17,6 +22,10 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.loggedIn = false;
+  }
+
+  goToHomeDashboard() {
+    this.router.navigate(['/dashboard-admin/home']);
   }
 
   getCurrentUser() {

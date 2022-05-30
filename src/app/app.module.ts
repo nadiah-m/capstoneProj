@@ -22,6 +22,7 @@ import { AssignUsersComponent } from './assign-users/assign-users.component';
 import { AssignProjectComponent } from './assign-project/assign-project.component';
 
 import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
     ManageUsersComponent,
     AssignUsersComponent,
     AssignProjectComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,
