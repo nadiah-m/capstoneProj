@@ -16,6 +16,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AdminGuard } from './_guards/admin.guard';
 import { AuthGuard } from './_guards/auth.guard';
+import { NotAuthComponent } from './errors/not-auth/not-auth.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -78,6 +79,11 @@ const routes: Routes = [
     path: 'assign-project',
     component: AssignProjectComponent,
     canActivate: [AdminGuard],
+  },
+  {
+    path: 'not-auth',
+    component: NotAuthComponent,
+  
   },
 ];
 

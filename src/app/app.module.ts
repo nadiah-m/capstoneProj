@@ -25,6 +25,7 @@ import { ProjectDetailsComponent } from './project-details/project-details.compo
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { NotAuthComponent } from './errors/not-auth/not-auth.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     AssignProjectComponent,
     ProjectDetailsComponent,
     AdminHomeComponent,
-    DashboardUserComponent
+    DashboardUserComponent,
+    NotAuthComponent
   ],
   imports: [
     BrowserModule,

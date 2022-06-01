@@ -26,8 +26,7 @@ export class AdminGuard implements CanActivate {
     }
     const error = 'You are not authorized to this page';
     console.log(error);
-    window.alert(error);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/not-auth']);
 
     return false;
   }
