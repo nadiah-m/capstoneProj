@@ -21,8 +21,7 @@ export class EditProjectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     public projectService: ProjectService,
-    private clientService: ClientsService,
-
+    private clientService: ClientsService
   ) {
     // console.log(this?.router?.getCurrentNavigation()?.extras?.state);
     this.projectId =
@@ -110,7 +109,7 @@ export class EditProjectComponent implements OnInit {
     console.log('editForm', this.editForm);
 
     this.projectService.editProject(this.editForm).subscribe((data: {}) => {
-      this.router.navigate(['/dashboard-admin']);
+      this.router.navigate(['/dashboard-admin/project', this.projectId]);
     });
   }
 }

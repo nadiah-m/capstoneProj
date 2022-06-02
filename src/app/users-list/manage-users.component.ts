@@ -11,6 +11,8 @@ export class ManageUsersComponent implements OnInit {
   constructor(public userService: UsersApiService, private router: Router) {}
 
   userList: any = [];
+  filterTerm!: string;
+  p: number = 1;
 
   getUserList() {
     this.userService.getUsers().subscribe((res) => {

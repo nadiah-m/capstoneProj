@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {NgChartsModule} from 'ng2-charts'
 
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -26,6 +25,8 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NotAuthComponent } from './errors/not-auth/not-auth.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { NotAuthComponent } from './errors/not-auth/not-auth.component';
     ProjectDetailsComponent,
     AdminHomeComponent,
     DashboardUserComponent,
-    NotAuthComponent
+    NotAuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,12 +55,12 @@ import { NotAuthComponent } from './errors/not-auth/not-auth.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgChartsModule
-
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

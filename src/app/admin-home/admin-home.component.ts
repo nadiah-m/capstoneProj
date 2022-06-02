@@ -8,6 +8,8 @@ import { ProjectService } from '../_Services/project.service';
 })
 export class AdminHomeComponent implements OnInit {
   projectList: any = [];
+  filterTerm!: string;
+  p: number = 1;
 
   constructor(public projectService: ProjectService) {}
 

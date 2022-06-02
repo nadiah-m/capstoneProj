@@ -1,7 +1,16 @@
 <h4 class="mt-4">Your Projects at a glance</h4>
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="card border shadow-2-strong mt-4" style="border-radius: 1rem">
+    <div class="form-group">
+      <input
+        style="border-radius: 1rem"
+        type="text"
+        class="form-control my-4"
+        placeholder="Search..."
+        [(ngModel)]="filterTerm"
+      />
+    </div>
+    <div class="card border shadow-2-strong mt-3" style="border-radius: 1rem">
       <table class="table">
         <thead>
           <tr>
@@ -10,7 +19,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let project of projectList">
+          <tr
+            *ngFor="
+              let project of projectList
+                | filter: filterTerm
+                | paginate: { itemsPerPage: 10, currentPage: p }
+            "
+          >
             <td>
               {{ project.projectName | titlecase }}
             </td>
@@ -20,6 +35,7 @@
             </td>
           </tr>
         </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </table>
     </div>
   </div>

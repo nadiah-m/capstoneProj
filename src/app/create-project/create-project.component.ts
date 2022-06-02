@@ -58,7 +58,7 @@ export class CreateProjectComponent implements OnInit {
       })
       .subscribe({
         next: () => {
-          this.router.navigate(['/dashboard-admin']);
+          this.router.navigate(['/dashboard-admin/home']);
         },
         error: (error) => {
           this.errorMessage = error.error;

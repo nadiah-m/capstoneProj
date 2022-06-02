@@ -7,8 +7,16 @@
           style="border-radius: 1rem;" 
         >
           <div class="card-body text-start">
-            <h5 class="lead">User List</h5>
-
+            <h5 class="lead mb-4">User List</h5>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control mb-4"
+                placeholder="Search..."
+                [(ngModel)]="filterTerm"
+              />
+            </div>
+           
             <table class="table">
               <thead>
                 <tr>
@@ -21,7 +29,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let user of userList">
+                <tr *ngFor="let user of userList | filter: filterTerm | paginate: { itemsPerPage: 10, currentPage: p }">
                   <td>
                     {{ user.firstName | titlecase }}
                     {{ user.lastName | titlecase }}
@@ -72,6 +80,7 @@
                   </td>
                 </tr>
               </tbody>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </table>
           </div>
         </div>
